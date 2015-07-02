@@ -1,2 +1,2 @@
 TARGET=lec1
-include ../../Makefile.include
+include ../../common/Makefile.include

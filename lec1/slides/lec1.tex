@@ -1,17 +1,4 @@
-\documentclass{beamer}
-
-\usepackage[utf8]{inputenc}
-\usepackage[russian]{babel}
-%\usepackage{beamerthemesplit}
-
-\definecolor{myblue}{rgb}{.0,.2,.3}
-\setbeamercolor*{palette primary}{use=structure,fg=white,bg=myblue}
-
-\setbeamertemplate{navigation symbols}{}
-
-\title{Введение в программирование}
-\author{Лопатин Александр}
-\date{2015}
+\input{../../common/header}
 
 \begin{document}
   \frame{\titlepage}
@@ -35,6 +22,18 @@
 
       \frame {
         \frametitle{Алгоритмическое программирование}
+
+        \begin{tikzpicture}[node distance=1.3cm]
+          \node (in1) [io] {Input};
+          \node (pro1) [process, below of=in1] {Process 1};
+          \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+          \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
+          \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+          \node (out1) [io, below of=pro2a] {Output};
+          \draw [arrow] (pro2b) -- (pro1);
+          \draw [arrow] (pro2a) -- (out1);
+        \end{tikzpicture}
+
       }
 
       \frame {
