@@ -9,13 +9,24 @@
 
 
   \section{Парадигмы программирования}
-
     \frame {
-      \frametitle{Императивное программирование}
-    }
+      \begin{tikzpicture}
+        \node (imper) [bigrect, xshift=-1cm] {Императивное};
+          \node (alg) [process, dashed, xshift=-1cm, yshift=1cm] {Алгоритмическое};
+            \node [xshift=-1cm, yshift=0.65cm] {Блок-схемы, словесное описание};
+          \node (struct) [process, xshift=0cm, yshift=0cm] {Структурное};
+            \node [xshift=0cm, yshift=-0.35cm] {Fortran...};
+          \node (proc) [process, xshift=-1cm, yshift=-1cm] {Процедурное};
+            \node [xshift=-1cm, yshift=-1.35cm] {Fortran, C, Pascal...};
+          \node (oop) [process, xshift=-1.5cm, yshift=-2cm] {Объектно-ориентированное (ООП)};
+            \node [xshift=-1.5cm, yshift=-2.35cm] {C++, C\#, Java, Python, Ruby, JS, ...};
 
-    \frame {
-      \frametitle{Декларативное программирование}
+        \node (decl) [bigrect, xshift=5cm] {Декларативное};
+
+        \draw [arrow] (alg) -- (struct);
+        \draw [arrow] (struct) -- (proc);
+        \draw [arrow] (proc) -- (oop);
+      \end{tikzpicture}
     }
 
     \subsection{Императивное программирование}
@@ -23,14 +34,14 @@
       \frame {
         \frametitle{Алгоритмическое программирование}
 
-        \begin{tikzpicture}[node distance=1.3cm]
+        \begin{tikzpicture}
           \node (in1) [io] {Input};
           \node (pro1) [process, below of=in1] {Process 1};
           \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
           \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
           \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
           \node (out1) [io, below of=pro2a] {Output};
-          \draw [arrow] (pro2b) -- (pro1);
+          \draw [arrow] (pro2b) |- (pro1);
           \draw [arrow] (pro2a) -- (out1);
         \end{tikzpicture}
 
