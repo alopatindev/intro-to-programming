@@ -1,11 +1,49 @@
 \input{../../common/header}
 
 \begin{document}
+
   \frame{\titlepage}
 
 
   \section*{Содержание}
-  \frame{\tableofcontents}
+  \frame{\tableofcontents[hideallsubsections]}
+
+
+  \section{Общие термины}
+
+  \frame {
+    \frametitle{Исполнитель}
+  }
+
+  \frame {
+    \frametitle{Инструкции исполнителя}
+  }
+
+  \frame {
+    \frametitle{Алгоритм}
+  }
+
+  \frame {
+    \frametitle{Программа}
+    % спасибо кэп
+  }
+
+  \frame {
+    \frametitle{Интерфейс}
+      %Взаимодействие
+      \begin{itemize}
+        \item Пользовательский (UI --- User Interface)
+          %\subitem Graphical User Interface GUI
+          %\subitem Command-Line Interface (CLI)
+        \item Программный (API --- Application Interface)
+      \end{itemize}
+      \vspace{1cm}
+      CLI может использоваться как API
+  }
+
+  \section{Обзор развития вычислительных систем}
+    \frame {
+    }
 
 
   \section{Парадигмы программирования}
@@ -17,7 +55,7 @@
           \node (struct) [process, xshift=0cm, yshift=0cm] {Структурное};
             \node [xshift=0cm, yshift=-0.35cm] {Fortran...};
           \node (proc) [process, xshift=-1cm, yshift=-1cm] {Процедурное};
-            \node [xshift=-1cm, yshift=-1.35cm] {Fortran, C, Pascal...};
+            \node [xshift=-1cm, yshift=-1.35cm] {C, Pascal...};
           \node (oop) [process, xshift=-1.5cm, yshift=-2cm] {Объектно-ориентированное (ООП)};
             \node [xshift=-1.5cm, yshift=-2.35cm] {C++, C\#, Java, Python, Ruby, JS, ...};
 
@@ -29,39 +67,94 @@
       \end{tikzpicture}
     }
 
-    \subsection{Императивное программирование}
+    \subsection{Императивное программирование (Imperative Programming)}
+    \begin{frame}
+      Написание \bfseries алгоритмов \mdseries с помощью \bfseries инструкций исполнителя\mdseries
+        \vspace{1cm}
+        \texttt{1. Шагнуть вперед}
 
+        \texttt{2. Повернуть направо}
+
+        \texttt{3. Шагнуть вперед}
+        \vspace{1cm}
+    \end{frame}
+
+    \subsection{Декларативное программирование (Declarative Programming)}
+    \begin{frame}
+        \bfseries Описание \underline{желаемого результата}, вместо алгоритма получения этого результата.\mdseries\linebreak
+        \vspace{1cm}
+
+        Например запрос к базе данных:
+
+        \vspace{0.5cm}
+        \texttt{Выбрать абитуриентов}
+
+        \texttt{поступающих на специальность Программная Инженерия}
+
+        \texttt{с сортировкой по сумме баллов}
+        \vspace{1cm}
+
+        Подробнее рассмотрим ближе к концу курса
+    \end{frame}
+
+
+  \section{Алгоритмическое программирование}
+
+    \subsection{Словесное описание}
       \frame {
-        \frametitle{Алгоритмическое программирование}
-
-        \begin{tikzpicture}
-          \node (in1) [io] {Input};
-          \node (pro1) [process, below of=in1] {Process 1};
-          \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
-          \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
-          \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
-          \node (out1) [io, below of=pro2a] {Output};
-          \draw [arrow] (pro2b) |- (pro1);
-          \draw [arrow] (pro2a) -- (out1);
-        \end{tikzpicture}
-
+        \frametitle{Линейный алгоритм}
       }
 
       \frame {
-        \frametitle{Структурное программирование}
+        \frametitle{Алгоритм с ветвлением}
+      }
+
+    \subsection{Язык блок-схем}
+      \frame {
+        \frametitle{Линейный алгоритм}
       }
 
       \frame {
-        \frametitle{Процедурное программирование}
+        \frametitle{Алгоритм с ветвлением}
       }
 
+%      \frame {
+%        \begin{tikzpicture}
+%          \node (in1) [io] {Input};
+%          \node (pro1) [process, below of=in1] {Process 1};
+%          \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
+%          \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
+%          \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
+%          \node (out1) [io, below of=pro2a] {Output};
+%          \draw [arrow] (pro2b) |- (pro1);
+%          \draw [arrow] (pro2a) -- (out1);
+%        \end{tikzpicture}
+%      }
+
       \frame {
-        \frametitle{Объектно-ориентированное программирование (ООП)}
+        \frametitle{Практика}
       }
 
-    \subsection{Декларативное программирование}
-      \frame {
-      }
+
+  \section{Структурное программирование}
+    \frame {
+      \frametitle{Structured Programming}
+      \begin{itemize}
+        \item отказ от безусловного перехода
+        \item использование двух \bfseries управляющих структур\mdseries
+          %\subitem условие
+          %\subitem цикл
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Пример алгоритма}
+    }
+
+    \frame {
+      \frametitle{Практика}
+    }
+
 
 \end{document}
 
