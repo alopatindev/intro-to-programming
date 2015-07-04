@@ -6,43 +6,64 @@
 
 
   \section*{Содержание}
-  \frame{\tableofcontents[hideallsubsections]}
+    \frame{\tableofcontents[hideallsubsections]}
 
 
-  \section{Общие термины}
-
-  \frame {
-    \frametitle{Исполнитель}
-  }
-
-  \frame {
-    \frametitle{Инструкции исполнителя}
-  }
-
-  \frame {
-    \frametitle{Алгоритм}
-  }
-
-  \frame {
-    \frametitle{Программа}
-    % спасибо кэп
-  }
-
-  \frame {
-    \frametitle{Интерфейс}
-      %Взаимодействие
+  \section{Вводные термины}
+    \frame {
+      \frametitle{Исполнитель}
       \begin{itemize}
-        \item Пользовательский (UI --- User Interface)
-          %\subitem Graphical User Interface GUI
-          %\subitem Command-Line Interface (CLI)
-        \item Программный (API --- Application Interface)
+        \item повар
+        \item военнослужащий
+        \item гитарист
+        \item рок-группа
+        \item коммерческая компания
+        \item вычислительная система (компьютер, смартфон, бытовой прибор и т.п.)
       \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Инструкции исполнителя}
+      \begin{itemize}
+        \item \textbf{пункты рецепта} (<<42. Положить ложку сахара>>) для повара
+        \item \textbf{приказы} (<<нале-во!>>) для военнослужащего
+        \item \textbf{аккорды} для гитариста 
+        \item \textbf{инструкции процессора} (<<сложить два числа>>) для вычислительной системы
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Алгоритм}
+      Конечная последовательность \textbf{инструкций исполнителя} направленная на решение задачи
       \vspace{1cm}
-      CLI может использоваться как API
-  }
+      \begin{itemize}
+        \item \textbf{рецепт} для повара
+        \item \textbf{лабораторная работа} для студента
+        \item \textbf{текст песни} для вокалиста
+        \item \textbf{бизнес-план} коммерческой компании
+        \item \textbf{шаги воспроизведения проблемы} для тестировщика
+        \item \textbf{компьютерная программа} для вычислительной системы
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Интерфейс}
+        %Взаимодействие
+        \begin{itemize}
+          \item Пользовательский (UI --- User Interface)
+            %\subitem Graphical User Interface GUI
+            %\subitem Command-Line Interface (CLI)
+          \item Программный (API --- Application Interface)
+        \end{itemize}
+        \vspace{1cm}
+        CLI может использоваться как API
+    }
 
   \section{Обзор развития вычислительных систем}
     \frame {
+    }
+    \frame {
+      \frametitle{Многоуровневые системы}
     }
 
 
@@ -69,7 +90,7 @@
 
     \subsection{Императивное программирование (Imperative Programming)}
     \begin{frame}
-      Написание \bfseries алгоритмов \mdseries с помощью \bfseries инструкций исполнителя\mdseries
+      Написание \textbf{алгоритмов} перечислением \textbf{инструкций исполнителя}
         \vspace{1cm}
         \texttt{1. Шагнуть вперед}
 
@@ -81,7 +102,7 @@
 
     \subsection{Декларативное программирование (Declarative Programming)}
     \begin{frame}
-        \bfseries Описание \underline{желаемого результата}, вместо алгоритма получения этого результата.\mdseries\linebreak
+      \textbf{Описание желаемого результата}, \underline{вместо алгоритма} получения этого результата.\linebreak
         \vspace{1cm}
 
         Например запрос к базе данных:
@@ -141,7 +162,7 @@
       \frametitle{Structured Programming}
       \begin{itemize}
         \item отказ от безусловного перехода
-        \item использование двух \bfseries управляющих структур\mdseries
+        \item использование двух \textbf{управляющих структур}
           %\subitem условие
           %\subitem цикл
       \end{itemize}
