@@ -9,6 +9,38 @@
     \frame{\tableofcontents[hideallsubsections]}
 
 
+  \section{О чем курс}
+    \frame {
+      \begin{itemize}
+        \item урезанная версия одноименного универовского курса (обычно рассчитанного на 1---2 семестра)
+        \item основы и упоминания из других курсов
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Expectations}
+      \begin{itemize}
+        \item получим кругозор
+        \item узнаем основы нескольких языков
+        \item научимся базовым техникам
+        \item на практике применим некоторые техники
+      \end{itemize}
+    }
+
+
+  \section{Как построен курс}
+    \frame {
+      \begin{itemize}
+        \item разбит так, чтобы не вызвать передоз информацией
+        \item одно занятие в неделю на 2---3 часа (включает лекцию и практику)
+        \item 9 недель ($\approx 2$ месяца)
+        \item домашки на не более 2-х часов в неделю
+        \item один мелкий проект на 2 недели (2 викенда)
+        \item домашки и проект будут оцениваться
+      \end{itemize}
+    }
+
+
   \section{Вводные термины}
     \frame {
       \frametitle{Исполнитель}
@@ -48,12 +80,20 @@
 
     \frame {
       \frametitle{Интерфейс}
-        %Взаимодействие
+        Взаимодействие
+        \vspace{1cm}
         \begin{itemize}
           \item Пользовательский (UI --- User Interface)
-            %\subitem Graphical User Interface GUI
-            %\subitem Command-Line Interface (CLI)
+            \begin{itemize}
+              \item Graphical User Interface (GUI)
+              \item Command-Line Interface (CLI)
+            \end{itemize}
           \item Программный (API --- Application Interface)
+            \begin{itemize}
+              \item подпрограммы, модули, библиотеки
+              \item сетевые протоколы (например HTTP)
+              \item много других
+            \end{itemize}
         \end{itemize}
         \vspace{1cm}
         CLI может использоваться как API
@@ -74,7 +114,7 @@
           \node (alg) [process, dashed, xshift=-1cm, yshift=1cm] {Алгоритмическое};
             \node [xshift=-1cm, yshift=0.65cm] {Блок-схемы, словесное описание};
           \node (struct) [process, xshift=0cm, yshift=0cm] {Структурное};
-            \node [xshift=0cm, yshift=-0.35cm] {Fortran...};
+            %\node [xshift=0cm, yshift=-0.35cm] {Fortran...};
           \node (proc) [process, xshift=-1cm, yshift=-1cm] {Процедурное};
             \node [xshift=-1cm, yshift=-1.35cm] {C, Pascal...};
           \node (oop) [process, xshift=-1.5cm, yshift=-2cm] {Объектно-ориентированное (ООП)};
@@ -90,13 +130,16 @@
 
     \subsection{Императивное программирование (Imperative Programming)}
     \begin{frame}
-      Написание \textbf{алгоритмов} перечислением \textbf{инструкций исполнителя}
+      Написание \textbf{алгоритмов} путём перечисления \textbf{инструкций исполнителя}
         \vspace{1cm}
+
         \texttt{1. Шагнуть вперед}
 
-        \texttt{2. Повернуть направо}
+        \texttt{2. Шагнуть вперед}
 
-        \texttt{3. Шагнуть вперед}
+        \texttt{3. Повернуть направо на $90^\circ$}
+
+        \texttt{4. Шагнуть вперед}
         \vspace{1cm}
     \end{frame}
 
@@ -163,9 +206,23 @@
       \begin{itemize}
         \item отказ от безусловного перехода
         \item использование двух \textbf{управляющих структур}
-          %\subitem условие
-          %\subitem цикл
+        \begin{itemize}
+          \item условие
+          \item цикл
+        \end{itemize}
       \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Цикл с предусловием}
+    }
+
+    \frame {
+      \frametitle{Цикл со счетчиком --- частный случай цикла с предусловием}
+    }
+
+    \frame {
+      \frametitle{Цикл с постусловием}
     }
 
     \frame {
