@@ -5,7 +5,7 @@
   \frame{\titlepage}
 
 
-  \section*{Содержание}
+  \section*{Содержание} {
     \frame{\tableofcontents[hideallsubsections]}
 
 
@@ -81,12 +81,12 @@
     \frame {
       \frametitle{Интерфейс}
         Взаимодействие
-        \vspace{1cm}
+        \vspace{0.5cm}
         \begin{itemize}
           \item Пользовательский (UI --- User Interface)
             \begin{itemize}
-              \item Graphical User Interface (GUI)
-              \item Command-Line Interface (CLI)
+              \item Графический пользовательский интерфейс, Graphical User Interface (GUI)
+              \item Интерфейс коммандной строчки, Command-Line Interface (CLI)
             \end{itemize}
           \item Программный (API --- Application Interface)
             \begin{itemize}
@@ -95,17 +95,93 @@
               \item много других
             \end{itemize}
         \end{itemize}
-        \vspace{1cm}
+        \vspace{0.5cm}
         CLI может использоваться как API
     }
 
   \section{Обзор развития вычислительных систем}
     \frame {
-    }
-    \frame {
-      \frametitle{Многоуровневые системы}
+      \frametitle{1945: Архитектура фон Неймана (Von Neumann architecture)}
+      \begin{center}
+        \includegraphics[scale=0.3]{pictures/Von_Neumann_architecture.png}
+      \end{center}
     }
 
+    \frame {
+      \frametitle{1946: ENIAC}
+      \begin{center}
+        \includegraphics[scale=0.4]{pictures/ENIAC.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{1964: IBM System/360}
+      \begin{center}
+        \includegraphics[scale=0.07]{pictures/IBM_S360.jpg}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{<<Хакерская этика>> 60-ых}
+      В 60-е значение слова <<Хакер>> еще не было испорчено журналистами
+      \begin{itemize}
+        \item Доступ к компьютерам и любым другим средствам познания устройства мира для каждого должен быть неограниченным
+        \item Информация должна быть свободной
+        \item Недоверие властям и продвижение принципа децентрализации
+        \item Оценивать хакера можно лишь по его достижениям. Ни положение в обществе, ни возраст, ни раса не играют при этом никакой роли
+      \end{itemize}
+
+      \vspace{0.5cm}
+      \includegraphics[scale=0.05]{../../common/book.png}~Стивен Леви --- Хакеры: Герои компьютерной революции
+    }
+
+    \frame {
+      \frametitle{1975: Закон Мура}
+      \begin{center}
+        \includegraphics[scale=0.4]{pictures/moore_law.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Многоуровневые системы}
+      Системы состоят из подсистем (layers / levels)
+      \begin{center}
+        \includegraphics[scale=0.4]{../../common/you_dont_say.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Каждая железяка состоит из множества поджелезяк}
+      \begin{center}
+        \includegraphics[scale=0.7]{pictures/arm-arch.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Софт тоже многоуровневый}
+      \begin{itemize}
+        \item системный (например операционная система)
+        \begin{itemize}
+          \item драйвер сетевой карты
+          \item стек протоколов TCP/IP
+            \begin{itemize}
+              \item TCP...
+            \end{itemize}
+        \end{itemize}
+        \item прикладной (например веб-браузер)
+          \begin{itemize}
+            \item GUI
+              \begin{itemize}
+                \item Кнопка...
+              \end{itemize}
+            \item Интерпретатор JavaScript
+            \item HTTP-клиент
+          \end{itemize}
+      \end{itemize}
+      \begin{center}
+        \includegraphics[scale=0.4]{pictures/programs-as-seen-by-users.png}
+      \end{center}
+    }
 
   \section{Парадигмы программирования}
     \frame {
@@ -131,31 +207,25 @@
     \subsection{Императивное программирование (Imperative Programming)}
     \begin{frame}
       Написание \textbf{алгоритмов} путём перечисления \textbf{инструкций исполнителя}
-        \vspace{1cm}
-
-        \texttt{1. Шагнуть вперед}
-
-        \texttt{2. Шагнуть вперед}
-
-        \texttt{3. Повернуть направо на $90^\circ$}
-
-        \texttt{4. Шагнуть вперед}
-        \vspace{1cm}
+      \vspace{0.5cm}
+      \begin{center}
+        \includegraphics[scale=0.6]{pictures/imperative-programmer.jpg}
+      \end{center}
     \end{frame}
 
     \subsection{Декларативное программирование (Declarative Programming)}
     \begin{frame}
       \textbf{Описание желаемого результата}, \underline{вместо алгоритма} получения этого результата.\linebreak
-        \vspace{1cm}
+        \vspace{0.5cm}
 
         Например запрос к базе данных:
 
         \vspace{0.5cm}
         \texttt{Выбрать абитуриентов}
 
-        \texttt{поступающих на специальность Программная Инженерия}
+        \texttt{поступающих на специальность <<Программная Инженерия>>}
 
-        \texttt{с сортировкой по сумме баллов}
+        \texttt{с сортировкой по сумме баллов по убыванию}
         \vspace{1cm}
 
         Подробнее рассмотрим ближе к концу курса
@@ -167,10 +237,28 @@
     \subsection{Словесное описание}
       \frame {
         \frametitle{Линейный алгоритм}
+        \begin{enumerate}
+          \item Шагнуть вперед
+          \item Шагнуть вперед
+          \item Повернуть направо на $90^\circ$
+          \item Шагнуть вперед
+        \end{enumerate}
       }
 
       \frame {
         \frametitle{Алгоритм с ветвлением}
+
+        \vspace{0.5cm}
+        1. Для каждого студента
+        \begin{itemize}
+          \item 1.1. Напечатать имя, фамилию
+          \item 1.2. Если балл <= 2 перейти к п. 1.2.1 иначе к п. 1.3
+          \begin{itemize}
+            \item 1.2.1. Задать красный цвет шрифта
+          \end{itemize}
+          \item 1.3. Напечатать оценку
+          \item 1.4. Задать черный цвет шрифта
+        \end{itemize}
       }
 
     \subsection{Язык блок-схем}

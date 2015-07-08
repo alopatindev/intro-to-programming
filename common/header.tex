@@ -3,6 +3,7 @@
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
 
+\usepackage{graphicx}
 \usepackage{gensymb}
 
 %\usepackage{beamerthemesplit}
@@ -10,6 +11,8 @@
 %\useoutertheme{smoothtree}
 \useoutertheme{tree}
 \useinnertheme{circles}
+\setbeamertemplate{itemize items}[default]
+\setbeamertemplate{enumerate items}[default]
 
 \definecolor{myblue}{rgb}{.0,.2,.3}
 \setbeamercolor*{palette primary}{use=structure,fg=white,bg=myblue}
@@ -25,7 +28,19 @@
 \tikzstyle{bigrect} = [rectangle, minimum width=5.5cm, minimum height=6cm, text depth=5cm, draw=black, dashed]
 
 %\usepackage{verbatim}
-%\usepackage{listings}
+\usepackage{listings}
+%\usepackage{enumitem}
+%\setlistdepth{9}
+%\setlist[itemize,1]{label=$\bullet$}
+%\setlist[itemize,2]{label=$\bullet$}
+%\setlist[itemize,3]{label=$\bullet$}
+%\setlist[itemize,4]{label=$\bullet$}
+%\setlist[itemize,5]{label=$\bullet$}
+%\setlist[itemize,6]{label=$\bullet$}
+%\setlist[itemize,7]{label=$\bullet$}
+%\setlist[itemize,8]{label=$\bullet$}
+%\setlist[itemize,9]{label=$\bullet$}
+%\renewlist{itemize}{itemize}{9}
 
 \title{Введение в программирование}
 \subtitle{Лекция 1}
