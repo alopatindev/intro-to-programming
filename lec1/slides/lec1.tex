@@ -33,7 +33,7 @@
       \begin{itemize}
         \item разбит так, чтобы не вызвать передоз информацией
         \item одно занятие в неделю на 2---3 часа (включает лекцию и практику)
-        \item 9 недель ($\approx 2$ месяца)
+        \item 10 недель ($\approx 2\frac{1}{3}$ месяца)
         \item домашки на не более 2-х часов в неделю
         \item один мелкий проект на 2 недели (2 викенда)
         \item домашки и проект будут оцениваться
@@ -103,7 +103,7 @@
     \frame {
       \frametitle{1945: Архитектура фон Неймана (Von Neumann architecture)}
       \begin{center}
-        \includegraphics[scale=0.3]{pictures/Von_Neumann_architecture.png}
+        \includegraphics[scale=1]{pictures/Von_Neumann_architecture.png}
       \end{center}
     }
 
@@ -121,19 +121,19 @@
       \end{center}
     }
 
-    \frame {
-      \frametitle{<<Хакерская этика>> 60-ых}
-      В 60-е значение слова <<Хакер>> еще не было испорчено журналистами
-      \begin{itemize}
-        \item Доступ к компьютерам и любым другим средствам познания устройства мира для каждого должен быть неограниченным
-        \item Информация должна быть свободной
-        \item Недоверие властям и продвижение принципа децентрализации
-        \item Оценивать хакера можно лишь по его достижениям. Ни положение в обществе, ни возраст, ни раса не играют при этом никакой роли
-      \end{itemize}
-
-      \vspace{0.5cm}
-      \includegraphics[scale=0.05]{../../common/book.png}~Стивен Леви --- Хакеры: Герои компьютерной революции
-    }
+%    \frame {
+%      \frametitle{<<Хакерская этика>> 60-ых}
+%      В 60-е значение слова <<Хакер>> еще не было испорчено журналистами
+%      \begin{itemize}
+%        \item Доступ к компьютерам и любым другим средствам познания устройства мира для каждого должен быть неограниченным
+%        \item Информация должна быть свободной
+%        \item Недоверие властям и продвижение принципа децентрализации
+%        \item Оценивать хакера можно лишь по его достижениям. Ни положение в обществе, ни возраст, ни раса не играют при этом никакой роли
+%      \end{itemize}
+%
+%      \vspace{0.5cm}
+%      \includegraphics[scale=0.05]{../../common/book.png}~Стивен Леви --- Хакеры: Герои компьютерной революции
+%    }
 
     \frame {
       \frametitle{1975: Закон Мура}
@@ -143,11 +143,114 @@
     }
 
     \frame {
+      Закон прекратил действовать --- пришло время новых идей по увеличению производительности железа
+
+      \vspace{0.5cm}
+      \begin{itemize}
+        \item выполнять трудоемкие операции на других устройствах (например GPU)
+        \item объединять несколько ядер процессоров в один
+        \item объединять несколько компьютеров в вычислительный кластер
+        \item проектировать концептуально другие выч. системы, необязательно на основе фон Неймовской архитектуры
+        \begin{itemize}
+          \item квантовые компьютеры
+          \item клеточные компьютеры
+          \item ...
+        \end{itemize}
+      \end{itemize}
+    }
+
+    \frame {
+      С ростом производительности железа растет и сложность задач
+
+      \vspace{0.5cm}
+      Сложность программ тоже растет
+
+      \vspace{0.5cm}
+      Появляется много специализаций в IT, по аналогии с врачами
+    }
+
+  \section{Многоуровневые системы}
+    \frame {
       \frametitle{Многоуровневые системы}
-      Системы состоят из подсистем (layers / levels)
+      Системы состоят из подсистем (из слоёв / уровней)
       \begin{center}
         \includegraphics[scale=0.4]{../../common/you_dont_say.png}
       \end{center}
+    }
+
+    \newcommand{\layersInRealLife} {
+      \frametitle{Уровни (levels / layers) в реальной жизни}
+      \framesubtitle{Уровни характеризуются \textbf{обязанностями} и определяют \textbf{кто над кем главнее (выше)}}
+
+      \begin{itemize}
+        \item Директор конторы (высокий уровень)
+          \begin{itemize}
+            \item Художник (низкий уровень)
+            \item Программист (низкий уровень)
+            \begin{itemize}
+              \item Младший программист (самый низкий уровень)
+            \end{itemize}
+          \end{itemize}
+      \end{itemize}
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+      \textbf{Высокий} уровень просит либо \underline{свой} либо \underline{более низкий} уровень
+      (а не наоборот)
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Правильно}:
+
+      Д просит П создать продукт
+
+      П просит Х и М выполнить подзадачи для него
+
+      М и Х возвращают результаты своих работ П
+
+      П соединил результаты в продукт и вернул Д
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+      Д просит Х написать программу
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+
+      М вызвался сам сделать продукт. Сделал и впарил результат Д
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+
+      П просит Д дать ему задачу <<разработать велосипед>>
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Плохо / спорно}:
+
+      Д просит М выполнить задачу
+
+      (Лучше обратиться к П, чтобы тот передал задачу М)
     }
 
     \frame {
@@ -159,27 +262,9 @@
 
     \frame {
       \frametitle{Софт тоже многоуровневый}
-      \begin{itemize}
-        \item системный (например операционная система)
-        \begin{itemize}
-          \item драйвер сетевой карты
-          \item стек протоколов TCP/IP
-            \begin{itemize}
-              \item TCP...
-            \end{itemize}
-        \end{itemize}
-        \item прикладной (например веб-браузер)
-          \begin{itemize}
-            \item GUI
-              \begin{itemize}
-                \item Кнопка...
-              \end{itemize}
-            \item Интерпретатор JavaScript
-            \item HTTP-клиент
-          \end{itemize}
-      \end{itemize}
+
       \begin{center}
-        \includegraphics[scale=0.4]{pictures/programs-as-seen-by-users.png}
+        \includegraphics[scale=0.7]{pictures/programs-as-seen-by-users.png}
       \end{center}
     }
 
@@ -204,17 +289,18 @@
       \end{tikzpicture}
     }
 
-    \subsection{Императивное программирование (Imperative Programming)}
-    \begin{frame}
+    \frame {
+      \frametitle{Императивное программирование (Imperative Programming)}
+
       Написание \textbf{алгоритмов} путём перечисления \textbf{инструкций исполнителя}
       \vspace{0.5cm}
       \begin{center}
         \includegraphics[scale=0.6]{pictures/imperative-programmer.jpg}
       \end{center}
-    \end{frame}
+    }
 
-    \subsection{Декларативное программирование (Declarative Programming)}
     \begin{frame}
+      \frametitle{Декларативное программирование (Declarative Programming)}
       \textbf{Описание желаемого результата}, \underline{вместо алгоритма} получения этого результата.\linebreak
         \vspace{0.5cm}
 
