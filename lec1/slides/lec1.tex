@@ -1,5 +1,7 @@
 \input{../../common/header}
 
+\subtitle{Лекция 1}
+
 \begin{document}
 
   \frame{\titlepage}
@@ -169,7 +171,6 @@
       Появляется много специализаций в IT, по аналогии с врачами
     }
 
-  \section{Многоуровневые системы}
     \frame {
       \frametitle{Многоуровневые системы}
       Системы состоят из подсистем (из слоёв / уровней)
@@ -178,79 +179,8 @@
       \end{center}
     }
 
-    \newcommand{\layersInRealLife} {
-      \frametitle{Уровни (levels / layers) в реальной жизни}
-      \framesubtitle{Уровни характеризуются \textbf{обязанностями} и определяют \textbf{кто над кем главнее (выше)}}
-
-      \begin{itemize}
-        \item Директор конторы (высокий уровень)
-          \begin{itemize}
-            \item Художник (низкий уровень)
-            \item Программист (низкий уровень)
-            \begin{itemize}
-              \item Младший программист (самый низкий уровень)
-            \end{itemize}
-          \end{itemize}
-      \end{itemize}
-    }
-
     \frame {
       \layersInRealLife
-      \vspace{0.5cm}
-      \textbf{Высокий} уровень просит либо \underline{свой} либо \underline{более низкий} уровень
-      (а не наоборот)
-    }
-
-    \frame {
-      \layersInRealLife
-      \vspace{0.5cm}
-
-      \textbf{Правильно}:
-
-      Д просит П создать продукт
-
-      П просит Х и М выполнить подзадачи для него
-
-      М и Х возвращают результаты своих работ П
-
-      П соединил результаты в продукт и вернул Д
-    }
-
-    \frame {
-      \layersInRealLife
-      \vspace{0.5cm}
-
-      \textbf{Неправильно}:
-      Д просит Х написать программу
-    }
-
-    \frame {
-      \layersInRealLife
-      \vspace{0.5cm}
-
-      \textbf{Неправильно}:
-
-      М вызвался сам сделать продукт. Сделал и впарил результат Д
-    }
-
-    \frame {
-      \layersInRealLife
-      \vspace{0.5cm}
-
-      \textbf{Неправильно}:
-
-      П просит Д дать ему задачу <<разработать велосипед>>
-    }
-
-    \frame {
-      \layersInRealLife
-      \vspace{0.5cm}
-
-      \textbf{Плохо / спорно}:
-
-      Д просит М выполнить задачу
-
-      (Лучше обратиться к П, чтобы тот передал задачу М)
     }
 
     \frame {
@@ -295,7 +225,7 @@
       Написание \textbf{алгоритмов} путём перечисления \textbf{инструкций исполнителя}
       \vspace{0.5cm}
       \begin{center}
-        \includegraphics[scale=0.6]{pictures/imperative-programmer.jpg}
+        \includegraphics[scale=0.5]{pictures/imperative-programmer.jpg}
       \end{center}
     }
 

@@ -1,0 +1,75 @@
+\input{../../common/header}
+
+\subtitle{Лекция 3}
+
+\begin{document}
+
+  \frame{\titlepage}
+
+
+  \section*{Содержание} {
+    \frame{\tableofcontents[hideallsubsections]}
+
+
+  \section{Многоуровневые системы}
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+      \textbf{Высокий} уровень просит либо \underline{свой} либо \underline{более низкий} уровень
+      (а не наоборот)
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Правильно}:
+
+      Д просит П создать продукт
+
+      П просит Х и М выполнить подзадачи для него
+
+      М и Х возвращают результаты своих работ П
+
+      П соединил результаты в продукт и вернул Д
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+      Д просит Х написать программу
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+
+      М вызвался сам сделать продукт. Сделал и впарил результат Д
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Неправильно}:
+
+      П просит Д дать ему задачу <<разработать велосипед>>
+    }
+
+    \frame {
+      \layersInRealLife
+      \vspace{0.5cm}
+
+      \textbf{Плохо / спорно}:
+
+      Д просит М выполнить задачу
+
+      (Лучше обратиться к П, чтобы тот передал задачу М)
+    }
+
+\end{document}
