@@ -13,3 +13,67 @@
       \end{itemize}
   \end{itemize}
 }
+
+\newcommand{\paradigmsImpDecl} {
+  \node (imper) [bigrect, xshift=-1cm] {Императивное};
+  \node (decl) [bigrect, xshift=5cm, yshift=2.5cm] {Декларативное};
+}
+
+\newcommand{\paradigmsAlg} {
+  \paradigmsImpDecl
+
+  \node (alg) [process, dashed, xshift=-1cm, yshift=1cm] {Алгоритмическое};
+    \node [xshift=-1cm, yshift=0.65cm] {Блок-схемы, словесное описание};
+}
+
+\newcommand{\paradigmsStruct} {
+  \paradigmsAlg
+
+  \node (struct) [process, xshift=0cm, yshift=0cm] {Структурное};
+    \node [xshift=0cm, yshift=-0.35cm] {Ограничение алгоритмического};
+  \draw [arrow] (alg) -- (struct);
+}
+
+\newcommand{\paradigmsProc} {
+  \paradigmsStruct
+
+  \node (proc) [process, xshift=-1cm, yshift=-1cm] {Процедурное};
+    \node [xshift=-1cm, yshift=-1.35cm] {C, Pascal...};
+  \draw [arrow] (struct) -- (proc);
+}
+
+\newcommand{\paradigmsOop} {
+  \paradigmsProc
+
+  \node (oop) [process, xshift=-1.5cm, yshift=-2cm] {Объектно-ориентированное (ООП)};
+    \node [xshift=-1.5cm, yshift=-2.35cm] {C++, C\#, Java, Python, Ruby, JS, ...};
+  \draw [arrow] (proc) -- (oop);
+}
+
+\newcommand{\paradigmsDecls} {
+  \paradigmsOop
+
+  \node (notprog) [process, dashed, xshift=5cm, yshift=4cm] {Описания};
+    \node [xshift=5cm, yshift=3.65cm] {Конфигурации и Web API (XML, JSON),};
+    \node [xshift=5cm, yshift=3.35cm] {вёрстка (HTML, LaTeX), аннотации};
+}
+
+\newcommand{\paradigmsFunc} {
+  \paradigmsDecls
+
+  \node (func) [process, xshift=4cm, yshift=2.5cm] {Функциональное};
+}
+
+\newcommand{\paradigmsLogical} {
+  \paradigmsFunc
+
+  \node (logical) [process, xshift=5cm, yshift=1cm] {Логическое};
+}
+
+\newcommand{\paradigmsAll} {
+  \paradigmsLogical
+
+  \node (generic) [process, xshift=-1cm, yshift=5cm] {Обобщенное};
+  \node (concurrent) [process, xshift=5cm, yshift=-2cm] {Конкурентное};
+  \node (module) [process, xshift=-2cm, yshift=4cm] {Модульное};
+}

@@ -81,8 +81,16 @@
     }
 
     \frame {
+      \frametitle{С точки зрения данных}
+      Компьютерные программы представляю из себя
+      \underline{ввод/вывод данных} и \underline{обработку данных}
+    }
+
+    \frame {
       \frametitle{Интерфейс}
-        Взаимодействие
+        Означает <<взаимодействие>>
+
+        Нужно для осуществления ввода/вывода данных
         \vspace{0.5cm}
         \begin{itemize}
           \item Пользовательский (UI --- User Interface)
@@ -97,7 +105,7 @@
               \item много других
             \end{itemize}
         \end{itemize}
-        \vspace{0.5cm}
+        \vspace{0.4cm}
         CLI может использоваться как API
     }
 
@@ -184,7 +192,7 @@
     }
 
     \frame {
-      \frametitle{Каждая железяка состоит из множества поджелезяк}
+      \frametitle{Каждая железяка состоит из множества более низкоуровневых железок}
       \begin{center}
         \includegraphics[scale=0.7]{pictures/arm-arch.png}
       \end{center}
@@ -201,21 +209,7 @@
   \section{Парадигмы программирования}
     \frame {
       \begin{tikzpicture}
-        \node (imper) [bigrect, xshift=-1cm] {Императивное};
-          \node (alg) [process, dashed, xshift=-1cm, yshift=1cm] {Алгоритмическое};
-            \node [xshift=-1cm, yshift=0.65cm] {Блок-схемы, словесное описание};
-          \node (struct) [process, xshift=0cm, yshift=0cm] {Структурное};
-            %\node [xshift=0cm, yshift=-0.35cm] {Fortran...};
-          \node (proc) [process, xshift=-1cm, yshift=-1cm] {Процедурное};
-            \node [xshift=-1cm, yshift=-1.35cm] {C, Pascal...};
-          \node (oop) [process, xshift=-1.5cm, yshift=-2cm] {Объектно-ориентированное (ООП)};
-            \node [xshift=-1.5cm, yshift=-2.35cm] {C++, C\#, Java, Python, Ruby, JS, ...};
-
-        \node (decl) [bigrect, xshift=5cm] {Декларативное};
-
-        \draw [arrow] (alg) -- (struct);
-        \draw [arrow] (struct) -- (proc);
-        \draw [arrow] (proc) -- (oop);
+        \paradigmsImpDecl
       \end{tikzpicture}
     }
 
@@ -250,6 +244,12 @@
 
   \section{Алгоритмическое программирование}
 
+    \frame {
+      \begin{tikzpicture}
+        \paradigmsAlg
+      \end{tikzpicture}
+    }
+
     \subsection{Словесное описание}
       \frame {
         \frametitle{Линейный алгоритм}
@@ -265,50 +265,109 @@
         \frametitle{Алгоритм с ветвлением}
 
         \vspace{0.5cm}
-        1. Для каждого студента
-        \begin{itemize}
-          \item 1.1. Напечатать имя, фамилию
-          \item 1.2. Если балл <= 2 перейти к п. 1.2.1 иначе к п. 1.3
-          \begin{itemize}
-            \item 1.2.1. Задать красный цвет шрифта
-          \end{itemize}
-          \item 1.3. Напечатать оценку
-          \item 1.4. Задать черный цвет шрифта
-        \end{itemize}
+%        1. Для каждого студента
+%        \begin{itemize}
+%          \item 1.1. Напечатать имя, фамилию
+%          \item 1.2. Если балл <= 2 перейти к п. 1.2.1 иначе к п. 1.3
+%          \begin{itemize}
+%            \item 1.2.1. Задать красный цвет шрифта
+%          \end{itemize}
+%          \item 1.3. Напечатать оценку
+%          \item 1.4. Задать черный цвет шрифта
+%        \end{itemize}
+        \begin{enumerate}
+          \item Если небо светлое --- перейти к п. 2 иначе к п. 3
+          \item Напечатать <<Сейчас день>>
+          \item Напечатать <<Сейчас ночь>>
+        \end{enumerate}
       }
 
-    \subsection{Язык блок-схем}
+    \subsection{Язык блок-схем (flow-charts)}
       \frame {
         \frametitle{Линейный алгоритм}
+        \begin{center}
+          \begin{tikzpicture}
+            \node (pro1) [process] {Шагнуть вперед};
+            \node (pro2) [process, below of=pro1] {Шагнуть вперед};
+            \node (pro3) [process, below of=pro2] {Повернуть направо на $90^\circ$};
+            \node (pro4) [process, below of=pro3] {Шагнуть вперед};
+            \draw [arrow] (pro1) -- (pro2);
+            \draw [arrow] (pro2) -- (pro3);
+            \draw [arrow] (pro3) -- (pro4);
+          \end{tikzpicture}
+        \end{center}
+      }
+
+      \newcommand{\algtree} {
+        \node (dec1) [decision] {балл <= 2};
+        \node [left of=dec1, node distance=2.3cm] {Да};
+        \node [right of=dec1, node distance=2.3cm] {Нет};
+
+        \node (pro1) [process, below of=dec1, left of=dec1, node distance=2cm] {Задать красный цвет};
+        \draw [arrow] (dec1) -| (pro1);
+      }
+      \frame {
+        \frametitle{Алгоритм с ветвлением}
+        \framesubtitle{Бывает с одной веткой}
+        \begin{center}
+          \begin{tikzpicture}
+            \algtree
+            \node (pro2) [below of=dec1, right of=dec1, node distance=2cm] {};
+            \node (pro3) [process, below of=pro1, right of=pro1, node distance=2cm] {Напечатать оценку};
+            \draw [arrow] (dec1) -| (pro2);
+            \draw [arrow] (pro1) |- (pro3);
+            \draw [arrow] (pro2) |- (pro3);
+          \end{tikzpicture}
+        \end{center}
       }
 
       \frame {
         \frametitle{Алгоритм с ветвлением}
-      }
+        \framesubtitle{И с двумя ветками}
+        \begin{center}
+          \begin{tikzpicture}
+            \algtree
+            \node (pro2) [process, below of=dec1, right of=dec1, node distance=2cm] {Задать черный цвет};
+            \node (pro3) [process, below of=pro1, right of=pro1, node distance=2cm] {Напечатать оценку};
 
-%      \frame {
-%        \begin{tikzpicture}
-%          \node (in1) [io] {Input};
-%          \node (pro1) [process, below of=in1] {Process 1};
-%          \node (dec1) [decision, below of=pro1, yshift=-0.5cm] {Decision 1};
-%          \node (pro2a) [process, below of=dec1, yshift=-0.5cm] {Process 2a};
-%          \node (pro2b) [process, right of=dec1, xshift=2cm] {Process 2b};
-%          \node (out1) [io, below of=pro2a] {Output};
-%          \draw [arrow] (pro2b) |- (pro1);
-%          \draw [arrow] (pro2a) -- (out1);
-%        \end{tikzpicture}
-%      }
+            \draw [arrow] (dec1) -| (pro2);
+            \draw [arrow] (pro1) |- (pro3);
+            \draw [arrow] (pro2) |- (pro3);
+          \end{tikzpicture}
+        \end{center}
+      }
 
       \frame {
         \frametitle{Практика}
+        \begin{center}
+          \begin{tikzpicture}
+            \node (io1) [io] {a, b};
+            \node (threedots) [below of=io1] {...};
+            \node (io2) [io, below of=threedots] {c};
+            \draw [arrow] (io1) -- (threedots);
+            \draw [arrow] (threedots) -- (io2);
+          \end{tikzpicture}
+        \end{center}
+
+        \begin{enumerate}
+          \item Нарисовать блок-схему к программе, которая берет в качестве ввода числа $a$ и $b$ и решает уравнение $a = b \cdot c$. Вывести решение (значение $c$). (Подсказка: сначала нужно вручную преобразовать уравнение)
+          \item Предусмотреть обработку ошибки деления на ноль к предыдущему заданию. Выводить <<Ошибка: деление на ноль>> вместо решения в этом случае
+          \item Написать словесное описание получившегося алгоритма
+        \end{enumerate}
       }
 
 
   \section{Структурное программирование}
     \frame {
-      \frametitle{Structured Programming}
+      \begin{tikzpicture}
+        \paradigmsStruct
+      \end{tikzpicture}
+    }
+
+    \frame {
+      \frametitle{Структурное программирование (Structured Programming)}
       \begin{itemize}
-        \item отказ от безусловного перехода
+        \item отказ от меток и безусловного перехода
         \item использование двух \textbf{управляющих структур}
         \begin{itemize}
           \item условие
@@ -318,23 +377,127 @@
     }
 
     \frame {
+      \begin{center}
+        \includegraphics[scale=0.4]{pictures/spaghetti-example.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Spaghetti is write-only code}
+      \begin{center}
+        \includegraphics[scale=0.3]{pictures/spaghetti-flowchart.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Повторения всё же нужны}
+      \framesubtitle{Но не такие безобразные}
+      \begin{center}
+        \begin{figure}
+          \includegraphics[scale=0.5]{pictures/spaghetti-red.png}
+          \includegraphics[scale=0.5]{pictures/structured-red.png}
+          \caption{Спагетти-код и структурный код}
+        \end{figure}
+      \end{center}
+    }
+
+    \newcommand{\loopTypes} {
+      \begin{center}
+        \includegraphics[scale=2]{pictures/loops.png}
+      \end{center}
+    }
+
+    \frame {
+      \frametitle{Циклы}
+      \loopTypes
+    }
+
+    \frame[label=preConditionLoop] {
       \frametitle{Цикл с предусловием}
+      \begin{enumerate}
+        \item Пока гвоздь не забит
+        \begin{enumerate}
+          \item Поднять молоток
+          \item Ударить молотком по гвоздю
+          \item Перейти к п. 1
+        \end{enumerate}
+      \end{enumerate}
+      \loopTypes
+    }
+
+    \frame[label=postConditionLoop] {
+      \frametitle{Цикл с постусловием}
+      \begin{enumerate}
+        \item (Делать)
+        \begin{enumerate}
+          \item Поднять молоток
+          \item Ударить молотком по гвоздю
+        \end{enumerate}
+        \item Пока гвоздь не забит --- перейти к п. 1
+      \end{enumerate}
+      \loopTypes
     }
 
     \frame {
       \frametitle{Цикл со счетчиком --- частный случай цикла с предусловием}
+      \begin{enumerate}
+        \item Инициализировать счетчик i значением 0
+        \item Пока i < n
+        \begin{enumerate}
+          \item Выполнить действие
+          \item Выполнить другое действие
+          \item ...
+          \item Увеличить счетчик i на единицу
+          \item Перейти к п. 2.
+        \end{enumerate}
+      \end{enumerate}
     }
 
-    \frame {
-      \frametitle{Цикл с постусловием}
-    }
-
-    \frame {
-      \frametitle{Пример алгоритма}
+    \frame[label=innerLoops] {
+      \frametitle{Циклы могут быть вложены}
+      \begin{enumerate}
+        \item i = 1
+        \item Пока i <= количество\_студентов
+        \item Напечатать имя i-го студента
+        \begin{enumerate}
+          \item j = 1
+          \item Пока j <= количество\_оценок\_студента
+          \begin{enumerate}
+            \item Показать j-ю оценку i-го студента
+            \item Перейти к п. 3.2
+          \end{enumerate}
+          \item Перейти к п. 2
+        \end{enumerate}
+        \item Напечатать <<такие дела>> 
+      \end{enumerate}
     }
 
     \frame {
       \frametitle{Практика}
+      \begin{enumerate}
+        \item Нарисовать блок-схему к алгоритму забивания гвоздя \underline{\hyperlink{preConditionLoop}{со слайда с циклом с предусловием}}
+        \item Тоже самое для \underline{\hyperlink{postConditionLoop}{слайда с циклом с постусловием}}
+        \item Тоже самое для \underline{\hyperlink{innerLoops}{алгоритма с вложенными циклами}} (подсказка: можно начать с вложенного цикла)
+      \end{enumerate}
+    }
+
+    \frame {
+      \frametitle{Домашка}
+      Нарисовать \underline{блок-схему} и написать \underline{словесное описание} к алгоритму решения квадратного уравнения $ax^2 + bx + c = 0$.
+
+      Входные данные: $a$, $b$ и $c$. Выходные данные:
+      \begin{itemize}
+        \item либо <<Корней нет>>
+        \item либо $x_1$
+        \item либо $x_1$ и $x_2$
+      \end{itemize}
+
+      Подсказки:
+      \begin{itemize}
+        \item дискриминант вычисляется по формуле $D = b^2 - 4\cdot a \cdot c$
+        \item корни уравнения вычисляются по формуле $x_{1,2} = \frac{-b \pm \sqrt{D}}{2 \cdot a}$
+        \item количество корней зависит от значений дискриминанта (3~ситуации:~$D < 0$, $D = 0$ и $D > 0$)
+      \end{itemize}
     }
 
 
