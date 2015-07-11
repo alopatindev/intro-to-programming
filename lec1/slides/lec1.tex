@@ -11,8 +11,9 @@
     \frame{\tableofcontents[hideallsubsections]}
 
 
-  \section{О чем курс}
+  \section{О курсе}
     \frame {
+      \frametitle{О чем курс}
       \begin{itemize}
         \item урезанная версия одноименного универовского курса (обычно рассчитанного на 1---2 семестра)
         \item основы и упоминания из других курсов
@@ -30,8 +31,8 @@
     }
 
 
-  \section{Как построен курс}
     \frame {
+      \frametitle{Как построен курс}
       \begin{itemize}
         \item разбит так, чтобы не вызвать передоз информацией
         \item одно занятие в неделю на 2---3 часа (включает лекцию и практику)
@@ -82,7 +83,7 @@
 
     \frame {
       \frametitle{С точки зрения данных}
-      Компьютерные программы представляю из себя
+      Компьютерные программы представляют из себя
       \underline{ввод/вывод данных} и \underline{обработку данных}
     }
 
@@ -90,7 +91,7 @@
       \frametitle{Интерфейс}
         Означает <<взаимодействие>>
 
-        Нужно для осуществления ввода/вывода данных
+        Нужно для осуществления \underline{ввода/вывода данных}
         \vspace{0.5cm}
         \begin{itemize}
           \item Пользовательский (UI --- User Interface)
@@ -299,13 +300,15 @@
       }
 
       \newcommand{\algtree} {
-        \node (dec1) [decision] {балл <= 2};
+        \node (dec1) [decision] {Плохая оценка};
         \node [left of=dec1, node distance=2.3cm] {Да};
         \node [right of=dec1, node distance=2.3cm] {Нет};
 
-        \node (pro1) [process, below of=dec1, left of=dec1, node distance=2cm] {Задать красный цвет};
+        \node (pro1) [process, below of=dec1, left of=dec1, node distance=2cm] {Задать красный цвет вывода};
+        \node (io1) [io, below of=pro1, right of=pro1, node distance=2cm] {Оценка};
         \draw [arrow] (dec1) -| (pro1);
       }
+
       \frame {
         \frametitle{Алгоритм с ветвлением}
         \framesubtitle{Бывает с одной веткой}
@@ -313,10 +316,9 @@
           \begin{tikzpicture}
             \algtree
             \node (pro2) [below of=dec1, right of=dec1, node distance=2cm] {};
-            \node (pro3) [process, below of=pro1, right of=pro1, node distance=2cm] {Напечатать оценку};
             \draw [arrow] (dec1) -| (pro2);
-            \draw [arrow] (pro1) |- (pro3);
-            \draw [arrow] (pro2) |- (pro3);
+            \draw [arrow] (pro1) |- (io1);
+            \draw [arrow] (pro2) |- (io1);
           \end{tikzpicture}
         \end{center}
       }
@@ -327,12 +329,11 @@
         \begin{center}
           \begin{tikzpicture}
             \algtree
-            \node (pro2) [process, below of=dec1, right of=dec1, node distance=2cm] {Задать черный цвет};
-            \node (pro3) [process, below of=pro1, right of=pro1, node distance=2cm] {Напечатать оценку};
+            \node (pro2) [process, below of=dec1, right of=dec1, node distance=2cm] {Задать черный цвет вывода};
 
             \draw [arrow] (dec1) -| (pro2);
-            \draw [arrow] (pro1) |- (pro3);
-            \draw [arrow] (pro2) |- (pro3);
+            \draw [arrow] (pro1) |- (io1);
+            \draw [arrow] (pro2) |- (io1);
           \end{tikzpicture}
         \end{center}
       }
@@ -403,7 +404,7 @@
 
     \newcommand{\loopTypes} {
       \begin{center}
-        \includegraphics[scale=2]{pictures/loops.png}
+        \includegraphics[scale=0.6]{pictures/loops.jpg}
       \end{center}
     }
 
@@ -413,7 +414,7 @@
     }
 
     \frame[label=preConditionLoop] {
-      \frametitle{Цикл с предусловием}
+      \frametitle{Цикл с предусловием (while)}
       \begin{enumerate}
         \item Пока гвоздь не забит
         \begin{enumerate}
@@ -426,7 +427,7 @@
     }
 
     \frame[label=postConditionLoop] {
-      \frametitle{Цикл с постусловием}
+      \frametitle{Цикл с постусловием (do ... while)}
       \begin{enumerate}
         \item (Делать)
         \begin{enumerate}
@@ -439,16 +440,29 @@
     }
 
     \frame {
-      \frametitle{Цикл со счетчиком --- частный случай цикла с предусловием}
+      \frametitle{Цикл со счетчиком (for) --- частный случай цикла с предусловием}
       \begin{enumerate}
-        \item Инициализировать счетчик i значением 0
-        \item Пока i < n
+        \item Инициализировать счетчик i значением 1
+        \item Пока i <= n
         \begin{enumerate}
           \item Выполнить действие
           \item Выполнить другое действие
           \item ...
           \item Увеличить счетчик i на единицу
           \item Перейти к п. 2.
+        \end{enumerate}
+      \end{enumerate}
+    }
+
+    \frame {
+      \frametitle{Всё тот же цикл for}
+      \begin{enumerate}
+        \item Для i от 1 до n
+        \begin{enumerate}
+          \item Выполнить действие
+          \item Выполнить другое действие
+          \item ...
+          \item Перейти к п. 1.
         \end{enumerate}
       \end{enumerate}
     }
