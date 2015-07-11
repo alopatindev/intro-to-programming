@@ -12,34 +12,28 @@
 
 
   \section{Языки программирования}
+    \frame {
+      \frametitle{Язык программирования}
+      Знаковая система \underline{для написания компьютерных программ}
+
+      \vspace{0.5cm}
+      Текст, написанный на таком языке называют \underline{текст программы} или \underline{исходный~код}~(source~code) или просто \underline{код}
+    }
 
     \frame {
       \frametitle{Трансляторы языков программирования}
+      Программы, которые \underline{понимают исходный код}
+
+      \vspace{0.5cm}
+      Бывают двух типов:
       \begin{itemize}
         \item Компилятор --- превращает текст программы в \underline{двоичный код}
         \item Интерпретатор --- читает текст программы и выполняет написанное
       \end{itemize}
-      \vspace{0.5cm}
-      \underline{Текст программы} --- тоже самое что и \underline{исходный~код}~(source~code) или просто \underline{код}
     }
 
     \frame {
-      С появлением JIT-компиляции такое разделение перестало быть актуальным
-
-      \vspace{0.5cm}
-      Лучше разделять сами языки, а не трансляторы:
-      \begin{itemize}
-        \item \textbf{Компилируемые} (Assembler, C++, C\#, Java, ...) --- код компилируют в \underline{двоичный код} и (обычно) распространяют в скомпилированном виде (.exe, .jar, .dll и т.д.)
-        \item \textbf{Скриптовые} (Python, Ruby, JavaScript/ECMAScript, bash/shell, cmd/bat, PowerShell, ...) --- программы обычно распространяют в виде исходного кода (.py, .js, .bat и т.д.)
-      \end{itemize}
-
-      \vspace{0.5cm}
-      \url{https://ru.wikipedia.org/wiki/JIT}
-    }
-
-    \frame {
-      \frametitle{Компилируемые}
-      Компилируют в двоичный код:
+      \frametitle{Двоичный код}
       \begin{itemize}
         \item \textbf{машинный код} (machine/native code) --- код, который исполняет \underline{аппаратный} исполнитель (например микропроцессор)
         \item \textbf{байт-код} \underline{виртуальной машины} --- код, который исполняет \underline{программный} исполнитель (например <<виртуальная машина .NET>> или <<виртуальная машина Java (JVM)>>) 
@@ -49,5 +43,87 @@
       Понятие <<виртуальная машина>> --- многозначно.
       Об этом разжевано здесь:
       \url{http://habrahabr.ru/company/intel/blog/254793/}
+    }
+
+    \frame {
+      С ростом популярности \underline{JIT-компиляции} разделение \underline{трансляторов} на
+      \underline{компиляторы и интерпретаторы} не столь актуально
+
+      \vspace{1cm}
+      Большинство \underline{актуальных интерпретаторов} стало, грубо говоря,
+      \underline{компиляторами} в \underline{машинный код})
+
+      \vspace{1cm}
+      \url{https://ru.wikipedia.org/wiki/JIT}
+    }
+
+    \frame {
+      Лучше разделять сами языки, а не трансляторы:
+      \begin{itemize}
+        \item \textbf{Компилируемые} (Assembler, C++, C\#, Java, ...)
+        \item \textbf{Скриптовые} (Python, Ruby, JavaScript/ECMAScript, bash/shell, cmd/bat, PowerShell, ...)
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Компилируемые языки}
+      Исходный код компилируют в \underline{двоичный код} и (обычно) распространяют в скомпилированном виде (.exe, .jar, .dll и т.д.)
+
+      \vspace{0.5cm}
+      Часто используется для:
+      \begin{itemize}
+        \item \textbf{прикладного программирования} (от текстового редактора до веб-браузера или более сложной системы)
+        \item \textbf{системного программирования} (драйвера устройств и т.д.)
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Скриптовые языки (языки сценариев)}
+      \framesubtitle{Для многих --- синоним к <<Интерпретируемым языкам>>}
+      Программы обычно распространяют в виде исходного кода (.py,~.js,~.bat~и~т.д.)
+
+      \vspace{0.5cm}
+      Часто используется для:
+      \begin{itemize}
+        \item \textbf{прототипов} прикладных программ
+        \item \textbf{сценариев} для автоматизации: сборка/тестирование билда, deploy на сервер
+        \item \textbf{плагинов/расширений} (для браузера, скажем)
+        \item клиентский или серверный \textbf{код для веб-сайта}
+      \end{itemize}
+
+      \vspace{0.5cm}
+      Популярно там, где хочется \underline{быстро увидеть результат}
+    }
+
+    \frame {
+      А еще языки классифицируют по тому, на какие \textbf{парадигмы~программирования} сделан основной акцент...
+    }
+
+    \frame {
+      \frametitle{Wait, wait...}
+      \framesubtitle{Зачем об этом всём знать? Для осознания того}
+
+      \begin{itemize}
+        \item что языки можно \underline{очень по-разному} классифицировать
+        \item \underline{одни классы} эффективно решают \underline{одни типы задач}, другие классы --- другие типы задач
+        \item{} <<универсального>> языка \underline{не существует}
+        \item чем более \underline{узкоспециализирован} язык (SQL для БД, G-Codes для станков, ...) или комбинация языка и фреймворка (Ruby+RoR или JS+node.js для веб) тем \underline{быстрее} их можно изучить
+      \end{itemize}
+
+      Другими словами --- чтобы знать по какому принципу выбирать следующий язык для изучения
+
+      \vspace{0.5cm}
+      \url{https://www.youtube.com/watch?v=LR8fQiskYII}
+      \url{https://www.youtube.com/watch?v=NvWTnIoQZj4}
+    }
+
+    \frame {
+      \frametitle{На википедии}
+      Можно увидеть разницу между языками, если обращать внимание на \underline{Paradigm} и \underline{Typing discipline}
+      \begin{center}
+        \includegraphics[scale=0.18]{pictures/python.png}
+        \includegraphics[scale=0.2]{pictures/js.png}
+        \includegraphics[scale=0.12]{pictures/java.png}
+      \end{center}
     }
 \end{document}
