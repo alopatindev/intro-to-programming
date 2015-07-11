@@ -1,0 +1,53 @@
+\input{../../common/header}
+
+\subtitle{Лекция 2}
+
+\begin{document}
+
+  \frame{\titlepage}
+
+
+  \section*{Содержание} {
+    \frame{\tableofcontents[hideallsubsections]}
+
+
+  \section{Языки программирования}
+
+    \frame {
+      \frametitle{Трансляторы языков программирования}
+      \begin{itemize}
+        \item Компилятор --- превращает текст программы в \underline{двоичный код}
+        \item Интерпретатор --- читает текст программы и выполняет написанное
+      \end{itemize}
+      \vspace{0.5cm}
+      \underline{Текст программы} --- тоже самое что и \underline{исходный~код}~(source~code) или просто \underline{код}
+    }
+
+    \frame {
+      С появлением JIT-компиляции такое разделение перестало быть актуальным
+
+      \vspace{0.5cm}
+      Лучше разделять сами языки, а не трансляторы:
+      \begin{itemize}
+        \item \textbf{Компилируемые} (Assembler, C++, C\#, Java, ...) --- код компилируют в \underline{двоичный код} и (обычно) распространяют в скомпилированном виде (.exe, .jar, .dll и т.д.)
+        \item \textbf{Скриптовые} (Python, Ruby, JavaScript/ECMAScript, bash/shell, cmd/bat, PowerShell, ...) --- программы обычно распространяют в виде исходного кода (.py, .js, .bat и т.д.)
+      \end{itemize}
+
+      \vspace{0.5cm}
+      \url{https://ru.wikipedia.org/wiki/JIT}
+    }
+
+    \frame {
+      \frametitle{Компилируемые}
+      Компилируют в двоичный код:
+      \begin{itemize}
+        \item \textbf{машинный код} (machine/native code) --- код, который исполняет \underline{аппаратный} исполнитель (например микропроцессор)
+        \item \textbf{байт-код} \underline{виртуальной машины} --- код, который исполняет \underline{программный} исполнитель (например <<виртуальная машина .NET>> или <<виртуальная машина Java (JVM)>>) 
+      \end{itemize}
+
+      \vspace{0.5cm}
+      Понятие <<виртуальная машина>> --- многозначно.
+      Об этом разжевано здесь:
+      \url{http://habrahabr.ru/company/intel/blog/254793/}
+    }
+\end{document}
