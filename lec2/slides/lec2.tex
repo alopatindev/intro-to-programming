@@ -126,4 +126,241 @@
         \includegraphics[scale=0.12]{pictures/java.png}
       \end{center}
     }
+
+  \section{<<Hello world>> на всех языках}
+\begin{frame}[fragile]
+  \frametitle{Привет, Python 2!}
+  \begin{minted}{python}
+print "Hello World!"
+  \end{minted}
+  \vspace{2cm}
+  Попробовать --- \url{http://tutorialspoint.com/execute\_python\_online.php}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Привет, JavaScript (ECMAScript 6)!}
+  \begin{minted}{js}
+console.log("Hello World!")
+  \end{minted}
+  \vspace{2cm}
+  Попробовать --- \url{http://www.es6fiddle.net/}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Привет, Java 8!}
+  \begin{minted}{java}
+public class HelloWorld {
+    public static void main(String[] args) {
+        System.out.println("Hello World!");
+    }
+}
+  \end{minted}
+  \vspace{2cm}
+  Попробовать --- \url{http://www.tutorialspoint.com/compile\_java8\_online.php}
+\end{frame}
+
+\section{Переменные и константы}
+\begin{frame}[fragile]
+  \frametitle{Данные в языках --- это переменные и константы}
+  \textbf{Переменную} можно изменять (время, координаты, ...)
+
+  Пример на Java:
+  \begin{minted}{java}
+int x = 2;
+System.out.println("x == " + x);       // x == 2
+x = x + 1;
+System.out.println("x == " + x);       // x == 3
+  \end{minted}
+  \vspace{1cm}
+  \textbf{Константу} нельзя изменять (число $\pi$, скорость света ...)
+  Пример на Java:
+  \begin{minted}{java}
+final double pi = 3.14;
+  \end{minted}
+\end{frame}
+
+\frame {
+  \frametitle{Данные могут быть разных типов}
+  Примитивные типы:
+  \begin{itemize}
+    \item \textbf{целое} число (int, long, unsigned int, ...)
+    \item \textbf{дробное} число (float, double)
+    \item \textbf{символ} (char)
+  \end{itemize}
+
+  \vspace{1cm}
+  Составные типы:
+  \begin{itemize}
+    \item \textbf{массивы} (array)
+    \item \textbf{объекты} (string, list, dict/map, ...)
+  \end{itemize}
+}
+
+\section{Действия (операторы)}
+\begin{frame}[fragile]
+  \frametitle{Присваивание (Python)}
+  \begin{minted}{python}
+x = 1
+y = 2
+print x       # 1
+x = y
+print x       # 2
+  \end{minted}
+Синтаксис: переменная = выражение
+
+Читается <<переменной присвоить выражение>>
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Арифметические операторы (Python)}
+  \begin{minted}{python}
+x = 2 + 2
+print x               # 4
+x = x - 1
+print x               # 3
+x = x * x
+print x               # 9
+print x % 2           # 1 (остаток от деления)
+print x / 2           # 4 (целочисленное деление)
+print x / 2.0         # 4.5 (деление целого на дробное)
+print float(x) / 2.0  # 4.5
+  \end{minted}
+В предпоследнем: целое (int) было неявно преобразовано в дробное (float)
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Логические операторы (Python)}
+  \begin{minted}{python}
+x = True
+y = False
+print x and y         # False
+print x or y          # True
+print not x           # False (тоже самое, что и x == False)
+
+a = 2
+b = 3
+print a < b           # True
+print a > b           # False
+print a == b          # False (читается "a равняется b")
+print a == (b - 1)    # True
+  \end{minted}
+  Не путать \textbf{равенство} (логический оператор) с \textbf{присвоением} (действие, которое изменяет значение переменной)
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Логические операторы (JavaScript)}
+  \begin{minted}{js}
+var x = true
+var y = false
+console.log(x && y)    // false
+console.log(x || y)    // true
+console.log(!x)        // false
+
+var a = 2
+var b = 3
+console.log(a < b)     // true
+console.log(a > b)     // false
+console.log(a === b)   // false
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Ввод (Python)}
+  \begin{minted}{python}
+line = input()            # ввод строки
+number = int(line)        # преобразование в целое число
+line = input()            # снова ввод строки
+floatNumber = float(line) # преобразование в дробное число
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Ввод (Java)}
+  \begin{minted}[fontsize=\tiny]{java}
+import java.util.Scanner;                      // импорт библиотеки
+...
+Scanner in = new Scanner(System.in);           // создание объекта
+String line = in.nextLine();                   // получение строчки текста
+int number = in.nextInt();                     // получение целого числа
+float floatNumber = in.nextFloat();            // получение дробного числа
+  \end{minted}
+\end{frame}
+
+\frame {
+  \frametitle{Ввод (JavaScript)}
+  Там для этого можно использовать HTML-форму
+
+  \vspace{0.5cm}
+  Пока не будем это использовать
+}
+
+\frame {
+  \frametitle{Практика}
+
+  Поиграться с описанным выше на всех языках
+}
+
+\section{Структурное программирование}
+\begin{frame}[fragile]
+\frametitle{Условия (JavaScript)}
+  \begin{minted}{js}
+var a = true
+var b = false
+
+// с одной веткой
+if (a && b) {
+  console.log("both are true")
+}
+
+// с двумя ветками
+if (a && b) {
+  console.log("both are true")
+} else {
+  console.log("one of them is false")
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Вложенные условия (JavaScript)}
+  \begin{minted}[fontsize=\tiny]{js}
+var a = true
+var b = false
+
+if (a && b) {
+  console.log("both are true")
+} else {
+  if (!a) {
+    console.log("a is false")
+  } else {
+    console.log("b is false")
+  }
+}
+
+// более читаемый вариант
+if (a && b) {
+  console.log("both are true")
+} else if (!a) {
+  console.log("a is false")
+} else {
+  console.log("b is false")
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Вложенные условия (Python)}
+  \begin{minted}{python}
+a = True
+b = False
+
+if a and b:
+  print "both are true"
+elif not a:
+  print "a is false"
+else:
+  print "b is false"
+  \end{minted}
+\end{frame}
+
 \end{document}
