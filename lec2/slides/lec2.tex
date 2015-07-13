@@ -47,7 +47,7 @@
 
     \frame {
       С ростом популярности \underline{JIT-компиляции} разделение \underline{трансляторов} на
-      \underline{компиляторы и интерпретаторы} не столь актуально
+      \underline{компиляторы} и \underline{интерпретаторы} не столь актуально
 
       \vspace{1cm}
       Большинство \underline{актуальных интерпретаторов} стало, грубо говоря,
@@ -107,7 +107,7 @@
         \item что языки можно \underline{очень по-разному} классифицировать
         \item \underline{одни классы} эффективно решают \underline{одни типы задач}, другие классы --- другие типы задач
         \item{} <<универсального>> языка \underline{не существует}
-        \item чем более \underline{узкоспециализирован} язык (SQL для БД, G-Codes для станков, ...) или комбинация языка и фреймворка (Ruby+RoR или JS+node.js для веб) тем \underline{быстрее} их можно изучить
+        \item чем более \underline{узкоспециализирован} язык (SQL для БД, G-Codes для станков, ...) или комбинация языка и библиотеки/фреймворка (Ruby+RoR или JS+node.js для веб, ...) тем \underline{быстрее} их можно изучить
       \end{itemize}
 
       Другими словами --- чтобы знать по какому принципу выбирать следующий язык для изучения
@@ -133,6 +133,7 @@
   \begin{minted}{python}
 print "Hello World!"
   \end{minted}
+
   \vspace{2cm}
   Попробовать --- \url{http://tutorialspoint.com/execute\_python\_online.php}
 \end{frame}
@@ -142,6 +143,7 @@ print "Hello World!"
   \begin{minted}{js}
 console.log("Hello World!")
   \end{minted}
+
   \vspace{2cm}
   Попробовать --- \url{http://www.es6fiddle.net/}
 \end{frame}
@@ -155,8 +157,10 @@ public class HelloWorld {
     }
 }
   \end{minted}
+
   \vspace{2cm}
-  Попробовать --- \url{http://www.tutorialspoint.com/compile\_java8\_online.php}
+  Попробовать --- %\url{http://www.tutorialspoint.com/compile\_java8\_online.php}
+\url{http://www.compilejava.net/}
 \end{frame}
 
 \section{Переменные и константы}
@@ -183,16 +187,16 @@ final double pi = 3.14;
   \frametitle{Данные могут быть разных типов}
   Примитивные типы:
   \begin{itemize}
-    \item \textbf{целое} число (int, long, unsigned int, ...)
-    \item \textbf{дробное} число (float, double)
-    \item \textbf{символ} (char)
+    \item \textbf{целое} число (\underline{int}, long, ...): -123, 12345678910L
+    \item \textbf{дробное} число (\underline{float}, double): 0.123f, 0.123
+    \item \textbf{символ} (char): 'z'
   \end{itemize}
 
   \vspace{1cm}
   Составные типы:
   \begin{itemize}
-    \item \textbf{массивы} (array)
-    \item \textbf{объекты} (string, list, dict/map, ...)
+    \item \textbf{массивы} (\underline{array}): [1, 2, 3, 4]
+    \item \textbf{объекты} (\underline{string}, list, set, dict/map, ...): $"$Hello$"$, \{"hello":~"привет"\}
   \end{itemize}
 }
 
@@ -206,6 +210,8 @@ print x       # 1
 x = y
 print x       # 2
   \end{minted}
+
+  \vspace{0.5cm}
 Синтаксис: переменная = выражение
 
 Читается <<переменной присвоить выражение>>
@@ -241,6 +247,7 @@ a = 2
 b = 3
 print a < b           # True
 print a > b           # False
+print a <= b, a >= b  # True False
 print a == b          # False (читается "a равняется b")
 print a == (b - 1)    # True
   \end{minted}
@@ -258,8 +265,7 @@ console.log(!x)        // false
 
 var a = 2
 var b = 3
-console.log(a < b)     // true
-console.log(a > b)     // false
+// операторы сравнения везде одинаковые, кроме равенства
 console.log(a === b)   // false
   \end{minted}
 \end{frame}
@@ -267,10 +273,67 @@ console.log(a === b)   // false
 \begin{frame}[fragile]
   \frametitle{Ввод (Python)}
   \begin{minted}{python}
-line = input()            # ввод строки
-number = int(line)        # преобразование в целое число
-line = input()            # снова ввод строки
-floatNumber = float(line) # преобразование в дробное число
+line = raw_input()         # ввод строки
+number = int(line)         # преобразование в целое число
+line = raw_input()         # снова ввод строки
+floatNumber = float(line)  # преобразование в дробное число
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Массивы (Python)}
+  На самом деле это нечто больше чем массивы, их используют как списки (List), стеки (Stack)
+  и очереди (Queue), на которые больше внимания будет уделено в Лекции 4
+  \vspace{0.5cm}
+  \begin{minted}{python}
+x = [1, 2, 55, -123]
+print x[0]            # 1
+print x[2]            # 55
+x[2] = 777
+print x               # [1, 2, 777, -55]
+print len(x)          # 4
+  \end{minted}
+
+  \vspace{0.5cm}
+  Подробней --- \url{https://docs.python.org/2/tutorial/datastructures.html}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Массивы (Java)}
+  \begin{minted}{java}
+int x[] = {1, 2, 55, -123};
+int y[] = new int[x.length];
+System.out.println("length is " + x.length);  // length is 4
+  \end{minted}
+
+  \vspace{0.5cm}
+  Подробней --- \url{http://www.tutorialspoint.com/java/java\_arrays.htm}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Массивы (JavaScript)}
+  \begin{minted}{js}
+var x = [1, 2, 55, -123]
+// индексировать, изменять и получать длину (aka размер) --- как в Java
+  \end{minted}
+
+  \vspace{0.5cm}
+  Подробней --- \url{http://www.w3schools.com/js/js\_arrays.asp}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Массивы могут быть вложены (Python)}
+  Массивы с двумя уровнями вложенности называют \underline{двумерными} или
+  <<массив \underline{размерности} два>>
+
+  (не путать с \underline{размерность} с \underline{размером})
+
+  \vspace{0.5cm}
+  \begin{minted}{python}
+x = [[1, 2, 55, -123], [4, 5, 6, 7]]
+x[1][3] = 4444
+print x
+[[1, 2, 55, -123], [4, 5, 6, 4444]]
   \end{minted}
 \end{frame}
 
@@ -346,6 +409,7 @@ if (a && b) {
   console.log("b is false")
 }
   \end{minted}
+  Hint: надо всегда выделять ветки условий в фигурные скобки в языках JS и Java
 \end{frame}
 
 \begin{frame}[fragile]
@@ -363,4 +427,71 @@ else:
   \end{minted}
 \end{frame}
 
+\begin{frame}[fragile]
+\frametitle{Цикл с предусловием (Python)}
+  \begin{minted}{python}
+i = 0
+while i < 10:
+  print i
+  i = i + 1
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Цикл с постусловием (Java)}
+  \begin{minted}{java}
+int i = 0;
+do {
+  System.out.println("i = " + i)
+  i = i + 1;
+} while (i < 10);
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Цикл со счетчиком (Java)}
+  \begin{minted}{java}
+for (int i = 0; i < 10; i = i + 1) {
+  System.out.println("i = " + i)
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Цикл со <<счетчиком>> (Python)}
+  \begin{minted}{python}
+for i in range(0, 10, 1):
+  print "i = " + str(i)
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Циклы могут быть вложены (Python)}
+  \begin{minted}{python}
+a = [[4, 5, 6], [7, 8, 9]]
+for i in range(0, 2, 1):
+  j = 0
+  while j < 3:
+    print "i =", i, " j =", j
+    print a[i][j]
+    j = j + 1
+  \end{minted}
+\end{frame}
+
+    \frame {
+      \frametitle{Домашка}
+
+        \begin{enumerate}
+          \item Реализовать задачу из предыдущей лекции (решение квадратного уравнения) на
+            \underline{любом} из трёх языков программирования: Python, JavaScript или Java
+            \begin{itemize}
+              \item по +1 баллу за реализацию на других языках (из этих трёх)
+            \end{itemize}
+          \item Пользователь вводит 8 дробных чисел: 4 для матрицы A и 4 для матрицы B. Найти произведение этих матриц
+            \begin{itemize}
+              \item матрицы закодировать как двумерные массивы
+              \item произведение матриц рассчитывается по формуле TODO
+            \end{itemize}
+        \end{enumerate}
+    }
 \end{document}
