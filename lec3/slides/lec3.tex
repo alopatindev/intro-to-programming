@@ -11,9 +11,21 @@
     \frame{\tableofcontents[hideallsubsections]}
 
 
-  \section{Многоуровневые системы}
+  \section{Процедурное программирование}
+    \begin{tikzpicture}
+      \paradigmsProc
+    \end{tikzpicture}
 
-    \frame {
+  \frame {
+    \frametitle{Процедурное программирование (Procedural Programming)}
+    \begin{itemize}
+      \item программу разделяют на подпрограммы (процедуры и функции)
+      \item на состояние программы влияют побочные эффекты
+    \end{itemize}
+  }
+
+  \frame {
+    \frametitle{Многоуровневые системы}
       \layersInRealLife
       \vspace{0.5cm}
       \textbf{Высокий} уровень просит либо \underline{свой} либо \underline{более низкий} уровень
@@ -71,5 +83,199 @@
 
       (Лучше обратиться к П, чтобы тот передал задачу М)
     }
+
+    \frame {
+      \frametitle{В процедурных программах тоже самое}
+
+      Пример типичной архитектуры процедурной программы:
+      \vspace{0.5cm}
+      \begin{itemize}
+        \item Главная логика
+          \begin{itemize}
+            \item Ввод данных
+              \begin{itemize}
+                \item Валидация ввода
+              \end{itemize}
+            \item Обработка данных
+              \begin{itemize}
+                \item Helpers для обработки данных
+              \end{itemize}
+            \item Вывод данных
+          \end{itemize}
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{В процедурных программах тоже самое}
+
+      Пример типичной архитектуры процедурной программы:
+      \vspace{0.5cm}
+      \begin{itemize}
+        \item Главная логика (main)
+          \begin{itemize}
+            \item Ввод данных (inputAllStudents)
+              \begin{itemize}
+                \item Валидация ввода (isNumber)
+              \end{itemize}
+            \item Обработка данных (findFailedStudents)
+              \begin{itemize}
+                \item Helpers для обработки данных (isFailedGrade)
+              \end{itemize}
+            \item Вывод данных (outputFailedStudents)
+          \end{itemize}
+      \end{itemize}
+    }
+
+    \frame {
+      \frametitle{Пример процедурной программы (Python)}
+    }
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+allStudents = []
+failedStudentsIndexes = []
+
+# high-level functions (1)
+def inputAllStudents(): pass        # 1
+def outputFailedStudents(): pass    # 5
+def findFailedStudents(): pass      # 3
+
+# low-level functions (2)
+def isNumber(s): pass               # 2
+def isFailedGrade(grade): pass      # 4
+
+if inputAllStudents():
+    findFailedStudents()
+    outputFailedStudents()
+else:
+    print "input error"
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+allStudents = []
+...
+def inputAllStudents():
+    global allStudents
+    nStr = raw_input("input students number: ")
+    if not isNumber(nStr):
+        return False
+    else:
+        ...
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+    else:
+        n = int(nStr)
+        for i in range(n):
+            name = raw_input("input name: ")
+            gradeStr = raw_input("input grade: ")
+            if not isNumber(gradeStr):
+                return False
+            else:
+                grade = int(gradeStr)
+                pair = [name, grade]
+                allStudents.append(pair)
+        return True
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+def isNumber(s):
+    if len(s) > 0:
+        for character in s:
+            if character < '0' or character > '9':
+                return False
+        return True
+    else:
+        return False
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+allStudents = [['Вася', 2], ['Петя', 5]]
+failedStudentsIndexes = []
+...
+def findFailedStudents():
+    global failedStudentsIndexes
+    n = len(allStudents)
+    for i in range(n):
+        name = allStudents[i][0]
+        grade = allStudents[i][1]
+        if isFailedGrade(grade):
+            failedStudentsIndexes.append(i)
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+def isFailedGrade(grade):
+    if grade <= 2:
+        return True
+    else:
+        return False
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+BAD_GRADE = 2
+...
+def isFailedGrade(grade):
+    if grade <= BAD_GRADE:
+        return True
+    else:
+        return False
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+BAD_GRADE = 2
+...
+def isFailedGrade(grade):
+    return grade <= BAD_GRADE
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \begin{minted}{python}
+allStudents = [['Вася', 2], ['Петя', 5]]
+failedStudentsIndexes = [0]
+...
+def outputFailedStudents():
+    for i in failedStudentsIndexes:
+        name = allStudents[i][0]
+        print name
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  Спорный момент: вообще-то этому коду не место в самом высоком уровне:
+  \begin{minted}{python}
+    print "input error"
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  Правильней будет выделить и его в отдельную high-level функцию:
+
+  \vspace{0.5cm}
+  \begin{minted}{python}
+def printError():
+    print "input error"
+...
+else:
+    printError()
+  \end{minted}
+
+  \vspace{0.5cm}
+  или вовсе вставить внутрь существующей high-level функции (inputAllStudents)
+\end{frame}
 
 \end{document}
