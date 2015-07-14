@@ -66,6 +66,11 @@
 
       \vspace{0.5cm}
       Слово <<скриптовый>> всё же не имеет четкого значения и для многих является синонимом к интерпретируемым языкам
+
+      \vspace{0.5cm}
+      %\url{https://programmers.stackexchange.com/questions/46137/what-is-the-main-difference-between-scripting-languages-and-programming-language/46142\#46142}
+      %\url{http://programmers.stackexchange.com/a/46142}
+      \url{http://programmers.stackexchange.com/a/46233}
     }
 
     \frame {
@@ -78,6 +83,9 @@
         \item \textbf{прикладного программирования} (от текстового редактора до веб-браузера или более сложной системы)
         \item \textbf{системного программирования} (драйвера устройств и т.д.)
       \end{itemize}
+
+      \vspace{0.5cm}
+      На них часто решают задачи, требующие высокой производительности
     }
 
     \frame {
@@ -89,7 +97,8 @@
       Часто используется для:
       \begin{itemize}
         \item \textbf{прототипов} прикладных программ
-        \item \textbf{сценариев} для автоматизации: сборка/тестирование билда, deploy на сервер
+        \item \textbf{сценариев} для автоматизации задач, вроде сборка/тестирование/deploy билда
+        \item написание пользовательских \textbf{макросов} для игры или электронной таблицы
         \item \textbf{плагинов/расширений} (для браузера, скажем)
         \item клиентский или серверный \textbf{код для веб-сайта}
       \end{itemize}
@@ -283,29 +292,32 @@ console.log(a === b)   // false
 \begin{frame}[fragile]
   \frametitle{Ввод (Python)}
   \begin{minted}{python}
-line = raw_input()         # ввод строки
-number = int(line)         # преобразование в целое число
-line = raw_input()         # снова ввод строки
-floatNumber = float(line)  # преобразование в дробное число
+line = raw_input("input a number: ") # ввод строки
+number = int(line)                   # преобр. в целое
+line = raw_input("input something: ")# снова ввод строки
+floatNumber = float(line)            # преобр.
+                                     # в дробное
   \end{minted}
 \end{frame}
 
 \begin{frame}[fragile]
   \frametitle{Массивы (Python)}
-  На самом деле это нечто больше чем массивы, их используют как списки (List), стеки (Stack)
-  и очереди (Queue), на которые больше внимания будет уделено в Лекции 4
-  \vspace{0.5cm}
   \begin{minted}{python}
 x = [1, 2, 55, -123]
-print x[0]            # 1
-print x[2]            # 55
-x[2] = 777
+i = 2
+print x[i]            # 55
+x[i] = 777
 print x               # [1, 2, 777, -55]
-print len(x)          # 4
+n = len(x)
+print n               # 4
   \end{minted}
 
   \vspace{0.5cm}
-  Подробней --- \url{https://docs.python.org/2/tutorial/datastructures.html}
+  n --- это \textbf{размер} или \textbf{длина} массива
+
+  i --- это \textbf{индекс} массива
+
+  Индексация (обычно) начинается с нуля
 \end{frame}
 
 \begin{frame}[fragile]
@@ -325,7 +337,7 @@ System.out.println("length is " + x.length);
   \frametitle{Массивы (JavaScript)}
   \begin{minted}{js}
 var x = [1, 2, 55, -123]
-// индексировать, изменять и получать длину (aka размер)
+// индексировать, изменять и получать размер
 // - как в Java
   \end{minted}
 
@@ -334,15 +346,14 @@ var x = [1, 2, 55, -123]
 \end{frame}
 
 \begin{frame}[fragile]
-  \frametitle{Массивы могут быть вложены (Python)}
+  \frametitle{Массивы могут быть вложены}
   Массивы с двумя уровнями вложенности называют \underline{двумерными} или
   <<массив \underline{размерности} два>>
 
   (не путать с \underline{размерность} с \underline{размером})
 
-  Пример массива 2x4 (размерности 2, размера 4; или с 2-мя строками и 4-мя столбцами):
-
   \vspace{0.5cm}
+  Пример (на Python) массива 2x4 (размерности 2, размера 4; или с 2-мя \underline{строками} и 4-мя \underline{столбцами}):
   \begin{minted}{python}
 x = [[1, 2, 55, -123], [4, 5, 6, 7]]
 x[1][3] = 4444
@@ -353,13 +364,13 @@ print x
 
 \begin{frame}[fragile]
   \frametitle{Ввод (Java)}
-  \begin{minted}[fontsize=\tiny]{java}
-import java.util.Scanner;                      // импорт библиотеки
+  \begin{minted}{java}
+import java.util.Scanner;            // импорт библиотеки
 ...
-Scanner in = new Scanner(System.in);           // создание объекта
-String line = in.nextLine();                   // получение строчки текста
-int number = in.nextInt();                     // получение целого числа
-float floatNumber = in.nextFloat();            // получение дробного числа
+Scanner in = new Scanner(System.in); // создание объекта
+String line = in.nextLine();         // получение строки
+int number = in.nextInt();           // получение целого
+float floatNumber = in.nextFloat();  // получение дробного
   \end{minted}
 \end{frame}
 
@@ -383,7 +394,9 @@ float floatNumber = in.nextFloat();            // получение дробн�
 \section{Структурное программирование}
 \begin{frame}[fragile]
 \frametitle{Условия (JavaScript)}
-  \begin{minted}{js}
+\begin{columns}
+  \column{0.5\textwidth}
+    \begin{minted}{js}
 var a = true
 var b = false
 
@@ -391,19 +404,24 @@ var b = false
 if (a && b) {
   console.log("both are true")
 }
-
+    \end{minted}
+  \column{0.5\textwidth}
+    \begin{minted}{js}
 // с двумя ветками
 if (a && b) {
   console.log("both are true")
 } else {
-  console.log("one of them is false")
+  console.log("one of them")
 }
-  \end{minted}
+    \end{minted}
+  \end{columns}
 \end{frame}
 
 \begin{frame}[fragile]
 \frametitle{Вложенные условия (JavaScript)}
-  \begin{minted}[fontsize=\tiny]{js}
+\begin{columns}
+  \column{0.5\textwidth}
+    \begin{minted}{js}
 var a = true
 var b = false
 
@@ -416,7 +434,9 @@ if (a && b) {
     console.log("b is false")
   }
 }
-
+    \end{minted}
+  \column{0.5\textwidth}
+    \begin{minted}{js}
 // более читаемый вариант
 if (a && b) {
   console.log("both are true")
@@ -425,7 +445,8 @@ if (a && b) {
 } else {
   console.log("b is false")
 }
-  \end{minted}
+    \end{minted}
+  \end{columns}
   Hint: надо всегда выделять ветки условий в фигурные скобки в языках JS и Java
 \end{frame}
 
@@ -436,11 +457,11 @@ a = True
 b = False
 
 if a and b:
-  print "both are true"
+    print "both are true"
 elif not a:
-  print "a is false"
+    print "a is false"
 else:
-  print "b is false"
+    print "b is false"
   \end{minted}
 \end{frame}
 
@@ -449,8 +470,8 @@ else:
   \begin{minted}{python}
 i = 0
 while i < 10:
-  print i
-  i = i + 1
+    print i
+    i = i + 1
   \end{minted}
 \end{frame}
 
@@ -459,8 +480,8 @@ while i < 10:
   \begin{minted}{java}
 int i = 0;
 do {
-  System.out.println("i = " + i)
-  i = i + 1;
+    System.out.println("i = " + i)
+    i = i + 1;
 } while (i < 10);
   \end{minted}
 \end{frame}
@@ -469,7 +490,7 @@ do {
   \frametitle{Цикл со счетчиком (Java)}
   \begin{minted}{java}
 for (int i = 0; i < 10; i = i + 1) {
-  System.out.println("i = " + i)
+    System.out.println("i = " + i)
 }
   \end{minted}
 \end{frame}
@@ -478,7 +499,7 @@ for (int i = 0; i < 10; i = i + 1) {
   \frametitle{Цикл со <<счетчиком>> (Python)}
   \begin{minted}{python}
 for i in range(0, 10, 1):
-  print "i = " + str(i)
+    print "i = " + str(i)
   \end{minted}
 \end{frame}
 
@@ -490,11 +511,11 @@ n = len(a)
 m = len(a[0])
 
 for i in range(0, 2, 1):
-  j = 0
-  while j < m:
-    print "i =", i, " j =", j
-    print a[i][j]
-    j = j + 1
+    j = 0
+    while j < m:
+        print "i =", i, " j =", j
+        print a[i][j]
+        j = j + 1
   \end{minted}
 \end{frame}
 
