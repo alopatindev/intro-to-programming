@@ -290,6 +290,47 @@ console.log(a === b)   // false
 \end{frame}
 
 \begin{frame}[fragile]
+  \underline{Порядок вычислений} зависит от \underline{приоритетов операторов}
+
+  Например в выражении
+  \begin{minted}{python}
+y = a + b * c
+  \end{minted}
+  сначала будет выполнено умножение, потом --- сложение.
+\end{frame}
+
+\begin{frame}[fragile]
+  На \underline{порядок вычислений} можно повлиять, расставив \underline{скобки}
+  \begin{minted}{python}
+y = (a + b) * c
+  \end{minted}
+
+\vspace{0.5cm}
+Существуют операторы, которые имеют разные приоритеты, \underline{в зависимости от языка}
+
+\vspace{0.5cm}
+В случае неуверенности в порядке вычислений --- нужно проставлять скобки
+\end{frame}
+
+\begin{frame}[fragile]
+  А в случае со \underline{слишком длинным} выражением --- лучше \underline{распилить} его на части
+
+  \vspace{0.5cm}
+  Например вместо
+  \begin{minted}{python}
+pageHeight = headerHeight + itemHeight * newsNumber +
+             footerHeight
+  \end{minted}
+
+\vspace{0.5cm}
+написать что-то вроде
+  \begin{minted}{python}
+newsHeight = itemHeight * newsNumber
+pageHeight = headerHeight + newsHeight + footerHeight
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
   \frametitle{Ввод (Python)}
   \begin{minted}{python}
 line = raw_input("input a number: ") # ввод строки

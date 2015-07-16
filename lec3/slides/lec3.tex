@@ -106,6 +106,17 @@ addStudent('Семён')
 \begin{frame}[fragile]
   \frametitle{Функция}
   Значение функции можно присвоить переменной
+
+  \vspace{1cm}
+  \begin{minted}{python}
+...
+num = getNumberOfStudents()
+...
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Функция}
   \begin{minted}{python}
 students = ['Вася', 'Петя']
 
@@ -129,7 +140,7 @@ print isStudentInList('Вася')   # True
     В некоторых языках (Python, например) процедуры тоже возвращают (не очень полезное) значение
 
     \vspace{0.5cm}
-    Многие забили на термин <<процедура>> и стали всё называть функциями
+    Многие забили на термин <<процедура>> и стали все подпрограммы называть функциями
   }
 
   \frame {
@@ -218,9 +229,12 @@ print isStudentInList('Вася')   # True
 
       Вывести всех студентов, заваливших экзамен
 
+      \vspace{0.5cm}
       Ввод: двумерный массив из студентов и их оценок
+
       Вывод: имена студентов, оценка которых <= 2
 
+      \vspace{0.5cm}
       В случае неверного ввода оценки выводить ошибку "input error" и выходить из программы
     }
 
@@ -334,7 +348,8 @@ def findFailedStudents():
         name = allStudents[i][0]
         grade = allStudents[i][1]
         if isFailedGrade(grade):
-            failedStudentsIndexes = failedStudentsIndexes + [i]
+            failedStudentsIndexes = \
+                failedStudentsIndexes + [i]
   \end{minted}
 \end{frame}
 
@@ -435,6 +450,8 @@ else:
   \frametitle{Пример}
 
   Написать функцию f(n), которая вернёт сумму арифметической прогрессии
+
+  \vspace{0.5cm}
   $1 + 2 + 3 + ... + (n - 1) + n$
 }
 
@@ -486,11 +503,52 @@ static int f(int n) {
     if (n <= 1) {
         return 1;
     } else {
-        return n + f(n - 1); // последним будет
-                             // вызов оператора +
+        return n + f(n - 1);
     }
 }
   \end{minted}
+\end{frame}
+
+\frame {
+  \frametitle{Риск переполнения стека вызовов (Call Stack Overflow)}
+  Мы рассмотрели простой случай \underline{не хвостовой} рекурсии
+
+  \vspace{0.5cm}
+  \underline{Не хвостовые} рекурсии \underline{не оптимизируются} трансляторами в \underline{итерационные алгоритмы}
+
+  \vspace{0.5cm}
+  При большом числе вызовов \underline{можно получить crash}, известный как <<переполнения стека>>
+}
+
+\frame {
+  \frametitle{Как избежать stack overflow?}
+  \begin{itemize}
+    \item убедиться, что функция вызывает себя небольшое количество раз (и уж точно не бесконечное число раз)
+    \item если функция должна вызывать себя много раз --- убедиться, что рекурсия \underline{хвостовая}
+  \end{itemize}
+}
+
+\begin{frame}[fragile]
+  \frametitle{Не хвостовая рекурсия}
+  Если функция идет по ветке, где должна вызвать себя, но \underline{перед возвратом/выходом} она делает что-то \underline{отличное от вызова самой себя} --- она \textbf{не хвостовая}
+
+  \vspace{0.5cm}
+  Не хвостовой вызов (последнее действие --- сложение)
+  \begin{minted}{python}
+return n + f(n - 1)
+  \end{minted}
+
+  \vspace{0.5cm}
+Более подробная версия этого кода:
+  \begin{minted}{python}
+a = n - 1
+b = f(a)          # (1)
+c = n + b         # (2)
+return c
+  \end{minted}
+
+  \vspace{0.5cm}
+  Строки (1) и (2) местами не поменяешь
 \end{frame}
 
 \begin{frame}[fragile]
@@ -509,12 +567,19 @@ static int f(int n, int sum = 0) { // значение аргумента
   \end{minted}
 \end{frame}
 
-\begin{frame}[fragile]
-  \frametitle{Функциональщики пишут еще более хацкерно}
-  \begin{minted}{python}
-def f(n, sum = 0):
-    return sum if n <= 0 else f(n - 1, sum + n)
-  \end{minted}
-\end{frame}
+\frame {
+  \frametitle{Неявная рекурсия}
+
+  Мы рассмотрели случаи с \underline{явной рекурсией}, когда \underline{из кода функции} видно, что она \underline{вызывает себя}
+
+  \vspace{0.5cm}
+  Но возможна и следующая ситуация:
+  \begin{itemize}
+    \item функция A вызывает функцию B
+    \item функция B вызывает функцию A
+  \end{itemize}
+
+  В этом случае функция A называется \underline{неявно рекурсивной}
+}
 
 \end{document}
