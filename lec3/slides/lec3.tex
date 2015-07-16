@@ -19,9 +19,117 @@
   \frame {
     \frametitle{Процедурное программирование (Procedural Programming)}
     \begin{itemize}
-      \item программу разделяют на подпрограммы (процедуры и функции)
-      \item на состояние программы влияют побочные эффекты
+        \item программу разделяют на \underline{подпрограммы} (процедуры и функции)
+        \begin{itemize}
+          \item \textbf{функции} \underline{возвращают} значения (например $y=\sin({x})$)
+          \item \textbf{процедуры} \underline{не возвращают} значений (например print~"hello")
+        \end{itemize}
+      \item подпрограмма может принимать некие \underline{аргументы} (или параметры)
     \end{itemize}
+  }
+
+  \frame {
+    \frametitle{Переменные}
+
+    \begin{itemize}
+      \item \textbf{локальные} доступны только \underline{внутри подпрограммы}
+      \item \textbf{глобальные} доступны \underline{из всех подпрограмм}
+    \end{itemize}
+  }
+
+  \frame {
+    \frametitle{Переменные}
+    \framesubtitle{Время жизни переменных}
+
+    \begin{itemize}
+      \item \textbf{локальные} (в большинстве языков) уничтожаются \underline{перед выходом из функции}
+      \item \textbf{глобальные} \underline{никогда} не уничтожаются
+    \end{itemize}
+  }
+
+  \frame {
+    \frametitle{Изменяемое состояние (Mutable State) и побочные эффекты (Side Effects)}
+
+    \vspace{0.5cm}
+    \underline{Глобальные переменные} хранят некое \underline{состояние} программы
+
+    \vspace{0.5cm}
+    На это \underline{состояние} влияют \underline{побочные эффекты}
+  }
+
+\begin{frame}[fragile]
+  \frametitle{Процедура}
+  \begin{minted}{python}
+# глобальная переменная
+students = ['Вася', 'Петя']
+
+# объявление процедуры
+def printAllStudents():
+    print 'all students:'
+    for i in students:
+        print i
+
+# вызов процедуры
+printAllStudents()
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Процедура с побочным эффектом}
+  \begin{minted}{python}
+# глобальная переменная
+students = ['Вася', 'Петя']
+...
+# процедура с побочным эффектом
+def addStudent(name):
+    global students  # разрешает запись
+                     # в глоб. переменную
+    students = students + [name]
+
+# вызов процедуры
+addStudent('Семён')
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Процедура может вызывать другие процедуры}
+  \begin{minted}{python}
+def addStudent(name):
+    global students
+    students = students + [name]
+    printAllStudents()
+
+addStudent('Семён')
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Функция}
+  Значение функции можно присвоить переменной
+  \begin{minted}{python}
+students = ['Вася', 'Петя']
+
+def getNumberOfStudents():
+    n = len(students)          # локальная переменная
+    return n
+
+def isStudentInList(name):
+    for i in students:
+        if i == name:
+            return True
+    return False
+
+num = getNumberOfStudents()
+print num                       # 2
+print isStudentInList('Вася')   # True
+  \end{minted}
+\end{frame}
+
+  \frame {
+    В некоторых языках (Python, например) процедуры тоже возвращают (не очень полезное) значение
+
+    \vspace{0.5cm}
+    Многие забили на термин <<процедура>> и стали всё называть функциями
   }
 
   \frame {
@@ -106,6 +214,17 @@
     }
 
     \frame {
+      \frametitle{Пример процедурной программы (Python)}
+
+      Вывести всех студентов, заваливших экзамен
+
+      Ввод: двумерный массив из студентов и их оценок
+      Вывод: имена студентов, оценка которых <= 2
+
+      В случае неверного ввода оценки выводить ошибку "input error" и выходить из программы
+    }
+
+    \frame {
       \frametitle{В процедурных программах тоже самое}
 
       Пример типичной архитектуры процедурной программы:
@@ -126,9 +245,16 @@
       \end{itemize}
     }
 
-    \frame {
-      \frametitle{Пример процедурной программы (Python)}
-    }
+\frame {
+    Программирование \textbf{сверху вниз} --- сначала реализовать \underline{все высокоуровневые} функции,
+    потом \underline{более низкого} уровня, потом еще более низкого уровня...
+
+  \vspace{0.5cm}
+  Программирование \textbf{снизу вверх} --- наоборот, от \underline{низкоуровневых} к \underline{высокоуровневым}
+
+  \vspace{0.5cm}
+  На практике в чистом виде ни то ни другое не применяют
+}
 
 \begin{frame}[fragile]
   \begin{minted}{python}
@@ -144,7 +270,7 @@ def findFailedStudents(): pass      # 3
 def isNumber(s): pass               # 2
 def isFailedGrade(grade): pass      # 4
 
-if inputAllStudents():
+if inputAllStudents():              # 0
     findFailedStudents()
     outputFailedStudents()
 else:
@@ -178,7 +304,7 @@ def inputAllStudents():
             else:
                 grade = int(gradeStr)
                 pair = [name, grade]
-                allStudents.append(pair)
+                allStudents = allStudents + [pair]
         return True
   \end{minted}
 \end{frame}
@@ -208,7 +334,7 @@ def findFailedStudents():
         name = allStudents[i][0]
         grade = allStudents[i][1]
         if isFailedGrade(grade):
-            failedStudentsIndexes.append(i)
+            failedStudentsIndexes = failedStudentsIndexes + [i]
   \end{minted}
 \end{frame}
 
@@ -223,6 +349,8 @@ def isFailedGrade(grade):
 \end{frame}
 
 \begin{frame}[fragile]
+  Рефакторинг: избавились от \underline{magic number} обзначив его за константу
+  \vspace{1cm}
   \begin{minted}{python}
 BAD_GRADE = 2
 ...
@@ -235,6 +363,8 @@ def isFailedGrade(grade):
 \end{frame}
 
 \begin{frame}[fragile]
+  Рефакторинг: избавились от лишнего условия (оператор <= и так возвращает нужное нам логическое значение)
+  \vspace{1cm}
   \begin{minted}{python}
 BAD_GRADE = 2
 ...
@@ -257,6 +387,8 @@ def outputFailedStudents():
 
 \begin{frame}[fragile]
   Спорный момент: вообще-то этому коду не место в самом высоком уровне:
+
+  \vspace{1cm}
   \begin{minted}{python}
     print "input error"
   \end{minted}
@@ -269,13 +401,120 @@ def outputFailedStudents():
   \begin{minted}{python}
 def printError():
     print "input error"
+
 ...
+
+if ...
 else:
     printError()
   \end{minted}
 
   \vspace{0.5cm}
   или вовсе вставить внутрь существующей high-level функции (inputAllStudents)
+\end{frame}
+
+\section{Рекурсивные функции}
+\begin{frame}[fragile]
+  \frametitle{Рекурсивные функции}
+
+  Подпрограммы могут вызывать сами себя
+  % TODO: пример функции, которая один раз вызывает себя
+\end{frame}
+
+\frame {
+  \frametitle{Зачем?}
+  Суть в том, чтобы повторить какой-то участок кода
+
+  Обычно этого добиваются циклами, но это не всегда выглядит лаконично и очевидно
+  \begin{center}
+    \includegraphics[scale=0.16]{pictures/recursive_vs_iteractive.png}
+  \end{center}
+}
+
+\frame {
+  \frametitle{Пример}
+
+  Написать функцию f(n), которая вернёт сумму арифметической прогрессии
+  $1 + 2 + 3 + ... + (n - 1) + n$
+}
+
+\begin{frame}[fragile]
+  \frametitle{Итерационный алгоритм}
+  \begin{minted}{java}
+static int f(int n) {
+    int sum = 0;
+    for (int i = 1; i <= n; i = i + 1) {
+        sum = sum + i;
+    }
+    return sum;
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Итерационный алгоритм 2}
+  \begin{minted}{java}
+static int f(int n) {
+    int sum = 0;
+    for (int i = n; i >= 1; i = i - 1) {
+        sum = sum + i;
+    }
+    return sum;
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Итерационный алгоритм 3}
+  \begin{minted}{java}
+static int f(int n) { // аргументы функции - тоже
+                      // локальные переменные
+    int sum = 0;
+    while (n >= 1) {
+        sum = sum + n;
+        n = n - 1;    // их тоже можно менять
+    }
+    return sum;
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Рекурсивный алгоритм}
+  \begin{minted}{java}
+static int f(int n) {
+    if (n <= 1) {
+        return 1;
+    } else {
+        return n + f(n - 1); // последним будет
+                             // вызов оператора +
+    }
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Хвостовая рекурсия}
+  \begin{minted}{java}
+static int f(int n, int sum = 0) { // значение аргумента
+                                   // по-умолчанию
+    if (n <= 0) {
+        return sum;
+    } else {
+        return f(n - 1, sum + n); // последним будет
+                                  // выполнен вызов
+                                  // функции f
+    }
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Функциональщики пишут еще более хацкерно}
+  \begin{minted}{python}
+def f(n, sum = 0):
+    return sum if n <= 0 else f(n - 1, sum + n)
+  \end{minted}
 \end{frame}
 
 \end{document}
