@@ -11,6 +11,170 @@
     \frame{\tableofcontents[hideallsubsections]}
 
 
+  \section{Способы испортить структуру}
+    \frame {
+      \frametitle{Способы испортить структуру}
+      Способы испортить структуру программы:
+
+      \begin{itemize}
+        \item безусловный переход \textbf{goto} --- большое зло, особенно в кривых руках
+          \begin{itemize}
+            \item большинство программистов \underline{обязуются не использовать} этот оператор
+            \item оператор популярен в низкоуровневой разработке (драйвера устройств, etc.) для обработки ошибок
+            \item во многих современных высокоуровневых языках этот оператор отсутствует
+          \end{itemize}
+        \item (спорно) \textbf{break} и \textbf{continue}
+        \item (спорно) внезапный \textbf{return}
+        \item неправильное использование \textbf{switch}/\textbf{case}/\textbf{break}
+      \end{itemize}
+    }
+
+\begin{frame}[fragile]
+  \frametitle{break и continue --- синтаксический сахар (Java)}
+  \framesubtitle{continue}
+  \begin{minted}{java}
+while (i < 0) {
+    if (a) {
+        continue;
+    }
+    b();
+    i = i + 1;
+}
+  \end{minted}
+тоже самое, что и
+  \begin{minted}{java}
+while (i < 0) {
+    if (!a) {
+        b();
+    }
+    i = i + 1;
+}
+  \end{minted}
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{break и continue --- синтаксический сахар (Java)}
+  \framesubtitle{break}
+  \begin{minted}{java}
+while (i < 0) {
+    if (a) {
+        break;
+    }
+    b();
+    i = i + 1;
+}
+  \end{minted}
+тоже самое, что и
+  \begin{minted}{java}
+while (i < 0 && !a) {
+    b();
+    i = i + 1;
+}
+  \end{minted}
+
+  \textbf{В простых случаях} ничего break и continue не портят
+
+  Можно использовать, если добавляют выразительности в код
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Внезапный return}
+  \begin{minted}{java}
+int f(int x) {
+    if (x < 0) {
+        return -1;
+    }
+
+    int y = blabla(x);
+    return y;
+}
+  \end{minted}
+
+тоже самое, что и ...
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Внезапный return}
+  \begin{minted}{java}
+int f(int x) {
+    if (x < 0) {
+        return -1;
+    } else {
+        int y = blabla(x);
+        return y;
+    }
+}
+  \end{minted}
+
+  Оба варианта нормальные, но второй предпочтительней
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Неправильное использование \textbf{switch}/\textbf{case}/\textbf{break}}
+Пусть
+  \begin{minted}{java}
+final int READY = 1;
+final int UPDATING = 2;
+  \end{minted}
+
+Тогда конструкция
+  \begin{minted}{java}
+if (state == READY) {
+    a();
+} else if (state == UPDATING) {
+    b();
+} else {
+    c();
+}
+blabla();
+  \end{minted}
+
+тоже самое, что и ...
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Неправильное использование \textbf{switch}/\textbf{case}/\textbf{break}}
+  \begin{minted}{java}
+switch (state) {
+    case READY:
+        a();
+        break;
+    case UPDATING:
+        b();
+        break;
+    default:
+        c();
+        break;
+}
+blabla();
+  \end{minted}
+
+  И это норм, если использовать именно в таком виде
+\end{frame}
+
+\begin{frame}[fragile]
+  \frametitle{Неправильное использование \textbf{switch}/\textbf{case}/\textbf{break}}
+  Предположим, \textbf{один из break'ов отсутствует} и state == READY
+  \begin{minted}{java}
+switch (state) {
+    case READY:
+        a();
+        //break;
+    case UPDATING:
+        b();
+        break;
+    default:
+        c();
+        break;
+}
+blabla();
+  \end{minted}
+  Тогда будут вызваны функции: a(), \underline{b()} и только потом blabla()
+
+  Это неочевидная фича, пришедшая из языка C. \textbf{Never} use it
+\end{frame}
+
+
   \section{Процедурное программирование}
     \begin{tikzpicture}
       \paradigmsProc
@@ -22,7 +186,7 @@
         \item программу разделяют на \underline{подпрограммы} (процедуры и функции)
         \begin{itemize}
           \item \textbf{функции} \underline{возвращают} значения (например $y=\sin({x})$)
-          \item \textbf{процедуры} \underline{не возвращают} значений (например print~"hello")
+          \item \textbf{процедуры} \underline{не возвращают} значений (например println("hello"))
         \end{itemize}
       \item подпрограмма может принимать некие \underline{аргументы} (или параметры)
     \end{itemize}
@@ -261,7 +425,7 @@ print isStudentInList('Вася')   # True
 
 \frame {
     Программирование \textbf{сверху вниз} --- сначала реализовать \underline{все высокоуровневые} функции,
-    потом \underline{более низкого} уровня, потом еще более низкого уровня...
+    потом все функции \underline{более низкого} уровня, потом все функции еще более низкого уровня и т.д.
 
   \vspace{0.5cm}
   Программирование \textbf{снизу вверх} --- наоборот, от \underline{низкоуровневых} к \underline{высокоуровневым}
@@ -523,8 +687,9 @@ static int f(int n) {
 \frame {
   \frametitle{Как избежать stack overflow?}
   \begin{itemize}
-    \item убедиться, что функция вызывает себя небольшое количество раз (и уж точно не бесконечное число раз)
-    \item если функция должна вызывать себя много раз --- убедиться, что рекурсия \underline{хвостовая}
+    \item убедиться, что функция \underline{вызывает себя небольшое количество раз} (и уж точно не бесконечное число раз)
+    \item если функция должна вызывать себя много раз (например обойти все/значительное количество элементов массива) --- убедиться, что рекурсивный вызов \underline{хвостовой}
+    \item есть и другие нюансы, в зависимости от языка и выбранного уровня оптимизации транслятора
   \end{itemize}
 }
 
@@ -559,9 +724,9 @@ static int f(int n, int sum = 0) { // значение аргумента
     if (n <= 0) {
         return sum;
     } else {
-        return f(n - 1, sum + n); // последним будет
-                                  // выполнен вызов
-                                  // функции f
+        return f(n - 1, sum + n);  // последним будет
+                                   // выполнен вызов
+                                   // функции f
     }
 }
   \end{minted}
