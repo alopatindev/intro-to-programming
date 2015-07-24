@@ -58,7 +58,7 @@
     }
 
     \frame {
-      Лучше разделять сами языки, а не трансляторы:
+      Лучше разделять сами языки (и то как их применяют), а не трансляторы:
       \begin{itemize}
         \item \textbf{Компилируемые} (Assembler, C++, C\#, Java, ...)
         \item \textbf{Скриптовые} (Python, Ruby, JavaScript/ECMAScript, bash/shell, cmd/bat, PowerShell, ...)
@@ -75,7 +75,7 @@
 
     \frame {
       \frametitle{Компилируемые языки}
-      Исходный код компилируют в \underline{двоичный код} и (обычно) распространяют в скомпилированном виде (.exe, .jar, .dll и т.д.)
+      Исходный код компилируют в \underline{двоичный код} и (обычно) распространяют в скомпилированном виде (.exe, .dll, .so и т.д.)
 
       \vspace{0.5cm}
       Часто используется для:
@@ -122,7 +122,7 @@
         \item чем более \underline{узкоспециализирован} язык (SQL для БД, G-Codes для станков, Verilog для спецификации устройств, GLSL для графики...) или комбинация языка и библиотеки/фреймворка (Ruby+RoR или JS+node.js для веб, ...) тем \underline{быстрее} их можно изучить
       \end{itemize}
 
-      Другими словами --- чтобы знать по какому принципу выбирать следующий язык для изучения
+      Другими словами --- чтобы появилось представление о \underline{способе выбора следующего языка} для изучения
 
       \vspace{0.5cm}
       \url{https://www.youtube.com/watch?v=LR8fQiskYII}
@@ -197,7 +197,7 @@ final double pi = 3.14;
 
 \frame {
   \frametitle{Данные могут быть разных типов}
-  Примитивные типы:
+  Примитивные (простые) типы:
   \begin{itemize}
     \item \textbf{целое} число (\underline{int}, long, ...): -123, 12345678910L
     \item \textbf{дробное} число (\underline{float}, double): 0.123f, 0.123
@@ -427,9 +427,6 @@ float floatNumber = in.nextFloat();  // получение дробного
   \frametitle{Практика}
 
   Поиграться с описанным выше на всех языках
-
-  \vspace{0.5cm}
-  Написать примитивный калькулятор
 }
 
 \section{Структурное программирование}
@@ -527,6 +524,21 @@ do {
   \end{minted}
 \end{frame}
 
+
+\begin{frame}[fragile]
+  \frametitle{Эмуляция цикла с постусловием (Python)}
+  \framesubtitle{Настоящего цикла с постусловием в Python нет}
+  \begin{minted}{python}
+i = 0
+conditionMet = False
+while not condMet:
+    print "i =", i
+    i = i + 1
+    if i < 10:
+        condMet = True
+  \end{minted}
+\end{frame}
+
 \begin{frame}[fragile]
   \frametitle{Цикл со счетчиком (Java)}
   \begin{minted}{java}
@@ -564,6 +576,9 @@ for i in range(0, 2, 1):
       \frametitle{Практика}
 
       Поиграться с описанным выше на всех языках
+
+      \vspace{0.5cm}
+      Написать примитивный калькулятор
 
       \vspace{0.5cm}
       Написать алгоритм поиска наибольшего элемента в одномерном массиве
