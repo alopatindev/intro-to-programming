@@ -238,7 +238,7 @@
         Например запрос к базе данных:
 
         \vspace{0.5cm}
-        \texttt{Выбрать абитуриентов}
+        \texttt{Выбрать имена абитуриентов}
 
         \texttt{поступающих на специальность <<Программная Инженерия>>}
 
@@ -465,7 +465,7 @@
     \frame {
       \frametitle{Всё тот же цикл for}
       \begin{enumerate}
-        \item Для i от 1 до n
+        \item Для \underline{i} от \underline{1} до \underline{n} с шагом \underline{1}
         \begin{enumerate}
           \item Выполнить действие
           \item Выполнить другое действие
@@ -478,19 +478,15 @@
     \frame[label=innerLoops] {
       \frametitle{Циклы могут быть вложены}
       \begin{enumerate}
-        \item i = 1
-        \item Пока i <= количество\_студентов
+        \item Для \underline{i} от \underline{1} до \underline{количество\_студентов} с шагом \underline{1}
         \item Напечатать имя i-го студента
         \begin{enumerate}
-          \item j = 1
-          \item Пока j <= количество\_оценок\_студента
+          \item Для \underline{j} от \underline{1} до \underline{количество\_оценок\_студента} с шагом \underline{1}
           \begin{enumerate}
             \item Показать j-ю оценку i-го студента
-            \item j = j + 1
-            \item Перейти к п. 3.2
+            \item Перейти к п. 2.1
           \end{enumerate}
-          \item i = i + 1
-          \item Перейти к п. 2
+          \item Перейти к п. 1
         \end{enumerate}
         \item Напечатать <<такие дела>> 
       \end{enumerate}
